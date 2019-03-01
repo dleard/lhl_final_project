@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const webpack = require('webpack');
 
 const outputDirectory = 'dist';
 
@@ -33,7 +34,6 @@ module.exports = {
   },
   devServer: {
     port: 3000,
-    open: true,
     proxy: {
       '/api': 'http://localhost:8080'
     }
@@ -43,6 +43,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html',
       favicon: './public/favicon.ico'
-    })
-  ]
+    }),
+    new webpack.HotModuleReplacementPlugin()
+  ],
+  watchOptions: {
+    aggregateTimeout: 300,
+    poll: 1000
+  }
 };

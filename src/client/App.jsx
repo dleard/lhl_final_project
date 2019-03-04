@@ -5,6 +5,7 @@ import SlidingPane from 'react-sliding-pane';
 import 'react-sliding-pane/dist/react-sliding-pane.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import axios from 'axios';
+import Modal from 'react-modal';
 
 export default class App extends Component {
   state = {
@@ -13,9 +14,19 @@ export default class App extends Component {
   };
 
   componentDidMount() {
+    Modal.setAppElement('body');
     fetch("/api/getxml")
     .then(res => res.json())
-    .then(result => console.log(result))
+    .then(result => {
+      const results = result.response.data[0].METAR;
+      console.log(results);
+      const vic = [];
+      results.forEach((metar) => {
+        if (metar.station_id[0] === 'CYYJ') { vic.push(metar) }
+      });
+      console.log(vic)
+      
+    })
     .catch(error => console.log(error));
   }
 

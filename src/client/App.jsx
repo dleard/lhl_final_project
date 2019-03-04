@@ -4,6 +4,10 @@ import ReactImage from './react.png';
 import SlidingPane from 'react-sliding-pane';
 import 'react-sliding-pane/dist/react-sliding-pane.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import axios from 'axios';
+
+const API = 'https://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=@BC&hoursBeforeNow=3';
+const DEFAULT_QUERY = 'redux';
 
 export default class App extends Component {
   state = {
@@ -15,6 +19,10 @@ export default class App extends Component {
     fetch('/api/getUsername')
       .then(res => res.json())
       .then(user => this.setState({ username: user.username }));
+    fetch("/api/getList")
+    .then(res => res.json())
+    .then(result => console.log(result))
+    .catch(error => console.log(error));
   }
 
   render() {

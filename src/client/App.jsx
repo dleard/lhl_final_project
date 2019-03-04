@@ -24,7 +24,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <button id="open-planner" onClick={() => this.setState({ isPaneOpenLeft: true })}>Planner <FontAwesomeIcon icon="angle-double-right"></FontAwesomeIcon></button>
+        <button className="btn btn-secondary col-sm-1 col-sm-offset-4" id="open-planner" onClick={() => this.setState({ isPaneOpenLeft: true })}>Planner <FontAwesomeIcon icon="angle-double-right"></FontAwesomeIcon></button>
         <SlidingPane
                 closeIcon={<div><FontAwesomeIcon icon="angle-double-left"></FontAwesomeIcon></div>}
                 isOpen={ this.state.isPaneOpenLeft }

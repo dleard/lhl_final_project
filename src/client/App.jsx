@@ -24,7 +24,7 @@ export default class App extends Component {
         <SlidingPane
                 closeIcon={<div><FontAwesomeIcon icon="angle-double-left"></FontAwesomeIcon></div>}
                 isOpen={ this.state.isPaneOpenLeft }
-                title='Trip Planner'
+                title='Trip Planner' //can be own component
                 from='left'
                 width='50%'
                 onRequestClose={ () => this.setState({ isPaneOpenLeft: false }) }>

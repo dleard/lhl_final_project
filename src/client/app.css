@@ -6,3 +6,10 @@ body {
   text-align: center;
   margin: auto;
 }
+
+#map {
+
+  height: 800px;
+  width: inherit;
+  margin: 0px auto 0px auto;
+}

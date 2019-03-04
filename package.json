@@ -18,12 +18,14 @@
     "@fortawesome/react-fontawesome": "^0.1.4",
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
+    "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "express": "^4.16.3",
     "node-sass": "^4.11.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
-    "react-sliding-pane": "^3.1.0"
+    "react-sliding-pane": "^3.1.0",
+    "xml2js": "^0.4.19"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",

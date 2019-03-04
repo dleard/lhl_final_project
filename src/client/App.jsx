@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactImage from './react.png';
-import Map from './components/Map.jsx';
+import MapContainer from './components/MapContainer.jsx';
+import StyledMap from './components/StyledMap.jsx';
 
 export default class App extends Component {
   state = { username: null };
@@ -15,8 +16,7 @@ export default class App extends Component {
     const { username } = this.state;
     return (
       <div>
-        <h1>hello!</h1>
-        <Map />
+        <MapContainer />
       </div>
     );
   }

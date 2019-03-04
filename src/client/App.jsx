@@ -4,6 +4,8 @@ import ReactImage from './react.png';
 import SlidingPane from 'react-sliding-pane';
 import 'react-sliding-pane/dist/react-sliding-pane.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import MapContainer from './components/MapContainer.jsx';
+import StyledMap from './components/StyledMap.jsx';
 import Modal from 'react-modal';
 
 export default class App extends Component {
@@ -48,7 +50,7 @@ export default class App extends Component {
                 onRequestClose={ () => this.setState({ isPaneOpenLeft: false }) }>
                 <div><Planner/></div>
             </SlidingPane>
-        <img style={{width: "100vw", height: "100vh"}} src={ReactImage} alt="react" />
+        <MapContainer />
       </div>
     );
   }

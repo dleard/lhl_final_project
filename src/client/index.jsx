@@ -9,4 +9,5 @@ import { faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-s
 
 library.add(faAngleDoubleLeft, faAngleDoubleRight)
 
+
 ReactDOM.render(<App />, document.getElementById('root'));

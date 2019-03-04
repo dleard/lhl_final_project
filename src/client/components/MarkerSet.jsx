@@ -5,7 +5,7 @@ export default class Planner extends Component {
 
   render() {
     const markers = this.props.markers.map(marker => (
-      <Marker key={Date.now()} station={marker.station_id} lat={marker.lat} />
+      <Marker key={Date.now()} station={marker.station_id} lat={marker.lat} lng={marker.lng} />
     ));
     return (
       <div>

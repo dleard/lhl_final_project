@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactImage from './react.png';
+import Map from './components/Map.jsx';
 
 export default class App extends Component {
   state = { username: null };
@@ -14,8 +15,8 @@ export default class App extends Component {
     const { username } = this.state;
     return (
       <div>
-        {username ? <h1>{`Hello ${username}`}</h1> : <h1>Loading.. please wait!</h1>}
-        <img src={ReactImage} alt="react" />
+        <h1>hello!</h1>
+        <Map />
       </div>
     );
   }

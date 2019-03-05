@@ -14,39 +14,15 @@ export default class MarkerSet extends Component {
       <Marker key={uuidv4()} station={marker.station_id} position={{ lat: `${marker.latitude[0]}`, lng: `${marker.longitude[0]}` }} />
       ));
       console.log(markers);
-      return (
-        <div>
-            {markers} 
-        </div>
-      );
+      
     }
     
     return (
-      <div>
-          
-      </div>
+      <Marker options={{icon: '/public/airport.png', label: `${this.props.data.station_id}`}} station={this.props.data.station_id} position={{ lat: `${this.props.data.latitude[0]}`, lng: `${this.props.data.longitude[0]}` }} >
+        {/* {this.state.open && (
+        <InfoWindow onClick={() => this.setState(state => ({open: !state.open}))}> {name} </InfoWindow>
+        )} */}
+      </Marker>
     );
   }
 }
-
-
-/*<Marker
-position={{ lat: -34.397, lng: 150.644 }}
-onClick={props.onToggleOpen}
->*/
-
-// class MessageList extends Component {
-//   render() {
-//     const messageListItems = this.props.messages.map(message => (
-//       <Message key={message.id} username={message.username} content={message.content} type={message.type} />
-//     ));
-//     return (
-//       <main className="messages">
-        
-//         {messageListItems}
-//       </main>
-//     );
-//   }
-// }
-// export default MessageList;
-

@@ -32,7 +32,7 @@ export default class Planner extends Component {
 
         <div className="search-container">
           <form id="base-search" onSubmit={this.handleSubmit}>
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
+          <input type="text" placeholder="CYYJ" value={this.state.value} onChange={this.handleChange} />
             <button type="submit"><FontAwesomeIcon icon="plus-circle"></FontAwesomeIcon> Add to Planner</button>
           </form>
         </div>

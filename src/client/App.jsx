@@ -50,7 +50,7 @@ export default class App extends Component {
                 onRequestClose={ () => this.setState({ isPaneOpenLeft: false }) }>
                 <div><Planner/></div>
             </SlidingPane>
-        <MapContainer />
+        <MapContainer metars={this.state.three_hour_metars} />
       </div>
     );
   }

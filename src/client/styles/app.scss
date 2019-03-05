@@ -31,6 +31,17 @@ body {
   height: 95vh;
 }
 
+#open-planner {
+  margin-bottom: 3rem;
+  position: relative;
+  top: 7px;
+}
+
+body #open-planner {
+  position: absolute;
+  top: 7px;
+}
+
 .navbar {
   background: #23383f;
   border-bottom: 1px solid black;

@@ -22,13 +22,6 @@ export default class App extends Component {
     .then(result => {
       const results = result.response.data[0].METAR;
       this.setState({three_hour_metars: results})
-      const vic = [];
-      results.forEach((metar) => {
-        if (metar.station_id[0] === 'CYYJ') { vic.push(metar) }
-      });
-      console.log(vic)
-      console.log(this.state.three_hour_metars);
-      
     })
     .catch(error => console.log(error));
     
@@ -48,7 +41,7 @@ export default class App extends Component {
                 from='left'
                 width='50%'
                 onRequestClose={ () => this.setState({ isPaneOpenLeft: false }) }>
-                <div><Planner/></div>
+                <div><Planner three_hour_metars={this.state.three_hour_metars} /></div>
             </SlidingPane>
         <MapContainer />
       </div>

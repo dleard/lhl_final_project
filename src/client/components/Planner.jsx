@@ -5,13 +5,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 export default class Planner extends Component {
 
   state = {
-    value: ''
+    value: '',
+    bases: [] 
   }
 
-  getVictoriaMetars = () => {
+  getVictoriaMetars = (base) => {
     const vic = [];
       this.props.three_hour_metars.forEach((metar) => {
-        if (metar.station_id[0] === 'CYYJ') { vic.push(metar) }
+        if (metar.station_id[0] === base) { vic.push(metar) }
       });
       return vic;
   }
@@ -21,12 +22,18 @@ export default class Planner extends Component {
   }
 
   handleSubmit = (event) => {
-    alert('A name was submitted: ' + this.state.value);
     event.preventDefault();
+    const newBase = this.state.value;
+    const all_bases = this.state.bases.concat(newBase);
+    console.log(all_bases);
+    this.setState({bases: all_bases});
+    this.setState({value: ''});
+    
   }
 
   render() {
     const vicMetars = this.getVictoriaMetars();
+    console.log(this.state.bases);
     return (
       <div id="planner">
 
@@ -36,7 +43,14 @@ export default class Planner extends Component {
             <button type="submit"><FontAwesomeIcon icon="plus-circle"></FontAwesomeIcon> Add to Planner</button>
           </form>
         </div>
-        <Planner_Item metars={vicMetars}/>
+
+        {this.state.bases.map((base) => {
+              return (
+                <Planner_Item key = {base} metars={this.getVictoriaMetars(base)}/>
+              )
+            })}
+
+        
         <h1>Planner Item</h1>     
       </div>
     );

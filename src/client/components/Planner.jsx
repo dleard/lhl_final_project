@@ -48,9 +48,6 @@ export default class Planner extends Component {
                 <Planner_Item key = {base} metars={this.getVictoriaMetars(base)}/>
               )
             })}
-
-        
-        <h1>Planner Item</h1>     
       </div>
     );
   }

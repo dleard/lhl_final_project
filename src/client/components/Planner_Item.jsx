@@ -114,24 +114,24 @@ export default class Planner_Item extends Component {
               <h3 style={{marginTop: '0'}}>Trends</h3>
             </div>
             <ul className="nav nav-pills">
-              <li className="active"><a data-toggle="pill" href="#temp">Temp</a></li>
-              <li><a data-toggle="pill" href="#viz">Visibility</a></li>
-              <li><a data-toggle="pill" href="#wind">Wind Speed</a></li>
+              <li className="active"><a data-toggle="pill" href={"#" + this.props.metars[0].station_id[0] + 'tempview'}>Temp</a></li>
+              <li><a data-toggle="pill" href={"#" + this.props.metars[0].station_id[0] + 'vizview'}>Visibility</a></li>
+              <li><a data-toggle="pill" href={"#" + this.props.metars[0].station_id[0] + 'windview'}>Wind Speed</a></li>
             </ul>
 
             <div style={{top: "100px", width: "120%"}} className="tab-content">
-              <div style={{width: "100%"}} id="temp" className="tab-pane fade in active">
+              <div style={{width: "100%"}} id={this.props.metars[0].station_id[0] + 'tempview'} className="tab-pane fade in active">
                 <div style={{marginTop: "30px", width: "100%"}}>
                   <canvas id={this.props.metars[0].station_id[0] + 'temp'}></canvas>
                 </div>
               </div>
               
-              <div id="viz" className="tab-pane fade">
+              <div id={this.props.metars[0].station_id[0] + 'vizview'} className="tab-pane fade">
                 <div style={{marginTop: "30px", width: "100%"}}>
                   <canvas id={this.props.metars[0].station_id[0] + 'viz'}></canvas>
                 </div>
               </div>
-              <div id="wind" className="tab-pane fade">
+              <div id={this.props.metars[0].station_id[0] + 'windview'} className="tab-pane fade">
               <div style={{marginTop: "30px", width: "100%"}}>
                   <canvas id={this.props.metars[0].station_id[0] + 'wind'}></canvas>
                 </div>

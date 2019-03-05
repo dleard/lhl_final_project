@@ -4,13 +4,14 @@ import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 export default class MarkerSet extends Component {
 
   render() {
-    console.log(this.props.metars)
-    const markers = this.props.markers.map(marker => (
-      <Marker key={Date.now()} station={marker.station_id} lat={marker.lat} />
-    ));
+    console.log('metar props in markerset!');
+    console.log(this.props.metars);
+    // const markers = this.props.metars.map(marker => (
+    //   <Marker key={Date.now()} station={marker.station_id} lat={marker.lat} />
+    // ));
     return (
       <div>
-           
+          {/* {markers}  */}
       </div>
     );
   }

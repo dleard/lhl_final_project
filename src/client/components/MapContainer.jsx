@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MarkerSet from './components/MarkerSet.jsx';
+import MarkerSet from './MarkerSet.jsx';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 
 const styleObject = [
@@ -312,6 +312,8 @@ const styleObject = [
 
 export class MapContainer extends Component {
   render() {
+    console.log('metars in mapcontainer!');
+    console.log(this.props.metars);
     return (
       <div id='map-background' className="map-background map">
         <Map google={this.props.google} styles={styleObject} center={{ lat: 55.427, lng: -123.367 }} zoom={5}>

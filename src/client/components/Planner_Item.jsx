@@ -135,6 +135,7 @@ export default class Planner_Item extends Component {
               </div>
             </div>
           </div>
+          <h4>Alternate Bases: </h4>
         </div>
       </div>
     );

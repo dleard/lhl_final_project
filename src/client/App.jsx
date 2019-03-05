@@ -11,20 +11,33 @@ import Modal from 'react-modal';
 export default class App extends Component {
   state = {
     username: null,
-    isPaneOpenLeft: false
+    isPaneOpenLeft: false,
+    three_hour_metars: null
   };
 
   componentDidMount() {
-    Modal.setAppElement('body')
-    fetch('/api/getUsername')
-      .then(res => res.json())
-      .then(user => this.setState({ username: user.username }));
+    Modal.setAppElement('body');
+    fetch("/api/getxml")
+    .then(res => res.json())
+    .then(result => {
+      const results = result.response.data[0].METAR;
+      this.setState({three_hour_metars: results})
+    })
+    .catch(error => console.log(error));
+    
   }
 
   render() {
+    
+    const metar = this.state.three_hour_metars !== null ? this.state.three_hour_metars[0].raw_text[0] : ''
     return (
       <div>
+<<<<<<< HEAD
         <button className="btn btn-secondary col-sm-1 col-sm-offset-4" id="open-planner" onClick={() => this.setState({ isPaneOpenLeft: true })}>Planner <FontAwesomeIcon icon="angle-double-right"></FontAwesomeIcon></button>
+=======
+        <p>{metar}</p>
+        <button id="open-planner" onClick={() => this.setState({ isPaneOpenLeft: true })}>Planner <FontAwesomeIcon icon="angle-double-right"></FontAwesomeIcon></button>
+>>>>>>> planner_item
         <SlidingPane
                 closeIcon={<div><FontAwesomeIcon icon="angle-double-left"></FontAwesomeIcon></div>}
                 isOpen={ this.state.isPaneOpenLeft }
@@ -32,7 +45,7 @@ export default class App extends Component {
                 from='left'
                 width='50%'
                 onRequestClose={ () => this.setState({ isPaneOpenLeft: false }) }>
-                <div><Planner/></div>
+                <div><Planner three_hour_metars={this.state.three_hour_metars} /></div>
             </SlidingPane>
         <MapContainer />
       </div>

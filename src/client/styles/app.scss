@@ -3,12 +3,20 @@ h1 {
 }
 
 body {
-  text-align: center;
-  margin: auto;
-
+  
   #open-planner {
     position: absolute;
     top:20px;
+  }
+
+  .card-header {
+    padding: 1rem;
+    background: #ebebeb;  
+  }
+
+  .card {
+    border-style: solid;
+    padding: 1rem;
   }
 }
 
@@ -32,6 +40,8 @@ body {
 }
 
 .navbar {
+  text-align: center;
+  margin: auto;
   background: #23383f;
   border-bottom: 1px solid black;
   height: 5vh;

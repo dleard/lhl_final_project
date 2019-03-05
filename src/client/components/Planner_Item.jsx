@@ -111,7 +111,7 @@ export default class Planner_Item extends Component {
           </ul>
           <div id="metar-pane">
             <div style={{textAlign: "center"}}>
-              <h3>Trends</h3>
+              <h3 style={{marginTop: '0'}}>Trends</h3>
             </div>
             <ul className="nav nav-pills">
               <li className="active"><a data-toggle="pill" href="#temp">Temp</a></li>

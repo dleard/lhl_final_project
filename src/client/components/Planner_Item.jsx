@@ -91,9 +91,6 @@ export default class Planner_Item extends Component {
   }
 
   render() {
-    const date = new Date(this.props.metars[0].observation_time[0])
-    console.log(typeof(date));
-    console.log(date.toString())
     console.log(this.props.metars);
     return (
       <div className="card">

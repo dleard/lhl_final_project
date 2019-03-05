@@ -4,6 +4,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default class Planner extends Component {
 
+  state = {
+    value: ''
+  }
+
   getVictoriaMetars = () => {
     const vic = [];
       this.props.three_hour_metars.forEach((metar) => {
@@ -12,14 +16,23 @@ export default class Planner extends Component {
       return vic;
   }
 
+  handleChange = (event) => {
+    this.setState({value: event.target.value});
+  }
+
+  handleSubmit = (event) => {
+    alert('A name was submitted: ' + this.state.value);
+    event.preventDefault();
+  }
+
   render() {
     const vicMetars = this.getVictoriaMetars();
     return (
       <div id="planner">
 
         <div className="search-container">
-          <form id="base-search">
-            <input type="text" placeholder="CYYJ" name="search"/>
+          <form id="base-search" onSubmit={this.handleSubmit}>
+          <input type="text" value={this.state.value} onChange={this.handleChange} />
             <button type="submit"><FontAwesomeIcon icon="plus-circle"></FontAwesomeIcon> Add to Planner</button>
           </form>
         </div>

@@ -98,44 +98,43 @@ export default class Planner_Item extends Component {
           {this.props.metars[0].station_id[0].slice(1)}
         </div>
         <div className="card-body">
-        <ul id="metar-pane" className="list-group">
-          <li className="list-group-item active">Raw Metars</li>
-          {this.props.metars.map((metar) => {
-      return (
-        <li key = {metar.raw_text[0]} className="list-group-item">{metar.raw_text[0]}</li>
-      )
-    })}
-        </ul>
-        <div id="metar-pane">
-        <ul className="nav nav-pills">
-          <li className="active"><a data-toggle="pill" href="#temp">Temp</a></li>
-          <li><a data-toggle="pill" href="#menu1">Menu 1</a></li>
-          <li><a data-toggle="pill" href="#menu2">Menu 2</a></li>
-        </ul>
+          <ul id="metar-pane" className="list-group">
+            <li className="list-group-item active">Raw Metars</li>
+            {this.props.metars.map((metar) => {
+              return (
+                <li key = {metar.raw_text[0]} className="list-group-item">{metar.raw_text[0]}</li>
+              )
+            })}
+          </ul>
+          <div id="metar-pane">
+            <div style={{textAlign: "center"}}>
+              <h3>Trends</h3>
+            </div>
+            <ul className="nav nav-pills">
+              <li className="active"><a data-toggle="pill" href="#temp">Temp</a></li>
+              <li><a data-toggle="pill" href="#viz">Visibility</a></li>
+              <li><a data-toggle="pill" href="#wind">Wind Speed</a></li>
+            </ul>
 
-        <div style={{top: "100px", width: "120%"}} className="tab-content">
-          <div style={{width: "100%"}} id="temp" className="tab-pane fade in active">
-            <div style={{marginTop: "30px", width: "100%"}}>
-              <canvas id="tempChart"></canvas>
+            <div style={{top: "100px", width: "120%"}} className="tab-content">
+              <div style={{width: "100%"}} id="temp" className="tab-pane fade in active">
+                <div style={{marginTop: "30px", width: "100%"}}>
+                  <canvas id="tempChart"></canvas>
+                </div>
+              </div>
+              
+              <div id="viz" className="tab-pane fade">
+                <div style={{marginTop: "30px", width: "100%"}}>
+                  <canvas id="vizChart"></canvas>
+                </div>
+              </div>
+              <div id="wind" className="tab-pane fade">
+              <div style={{marginTop: "30px", width: "100%"}}>
+                  <canvas id="windChart"></canvas>
+                </div>
+              </div>
             </div>
-            
           </div>
-          <div id="menu1" className="tab-pane fade">
-            <div style={{marginTop: "30px", width: "100%"}}>
-              <canvas id="vizChart"></canvas>
-            </div>
-          </div>
-          <div id="menu2" className="tab-pane fade">
-          <div style={{marginTop: "30px", width: "100%"}}>
-              <canvas id="windChart"></canvas>
-            </div>
-          </div>
-        </div>
-        </div>
-        
-          <h5 className="card-title">Special title treatment</h5>
-          <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" className="btn btn-primary">Go somewhere</a>
         </div>
       </div>
     );

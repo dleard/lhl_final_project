@@ -9,12 +9,14 @@ export default class Planner extends Component {
     bases: ['CYYJ', 'CYVR'] 
   }
 
-  getVictoriaMetars = (base) => {
-    const vic = [];
+  getMetars = (base) => {
+    const metars = [];
       this.props.three_hour_metars.forEach((metar) => {
-        if (metar.station_id[0] === base) { vic.push(metar) }
+        if (metar.station_id[0] === base) {
+          metars.push(metar) 
+        }
       });
-      return vic;
+      return metars;
   }
 
   handleChange = (event) => {
@@ -23,16 +25,27 @@ export default class Planner extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const newBase = this.state.value;
-    const all_bases = this.state.bases.concat(newBase);
-    console.log(all_bases);
-    this.setState({bases: all_bases});
+    let newBase = this.state.value;
+    let found = 0;
+    if (newBase.length === 3) { newBase = 'C' + newBase }
+    this.props.three_hour_metars.forEach((metar) => {
+      if (metar.station_id[0] === newBase) {
+        found = 1;
+      }
+    });
+    if (found === 1) {
+      const all_bases = this.state.bases.concat(newBase);
+      console.log(all_bases);
+      this.setState({bases: all_bases});
+    }
+    else {
+      alert(`${newBase} is an invalid airport code`)
+    }
     this.setState({value: ''});
     
   }
 
   render() {
-    const vicMetars = this.getVictoriaMetars();
     return (
       <div id="planner">
 
@@ -45,7 +58,7 @@ export default class Planner extends Component {
 
         {this.state.bases.map((base) => {
               return (
-                <Planner_Item key = {base} metars={this.getVictoriaMetars(base)}/>
+                <Planner_Item key = {base} metars={this.getMetars(base)}/>
               )
             })}
       </div>

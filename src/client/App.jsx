@@ -28,8 +28,6 @@ export default class App extends Component {
   }
 
   render() {
-    
-    const metar = this.state.three_hour_metars !== null ? this.state.three_hour_metars[0].raw_text[0] : ''
     return (
       <div>
         <button id="open-planner" onClick={() => this.setState({ isPaneOpenLeft: true })}>Planner <FontAwesomeIcon icon="angle-double-right"></FontAwesomeIcon></button>

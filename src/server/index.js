@@ -11,9 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get('/api/getxml', (req,res) => {
   axios.get(`https://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=@BC&hoursBeforeNow=3`)
   .then(response => {
-    console.log(response)
     parseString(response.data, function (err, result) {
-      console.log(result); // returns a json array
       res.send(result)
     });        
   })

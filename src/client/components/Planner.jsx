@@ -25,7 +25,7 @@ export default class Planner extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    let newBase = this.state.value;
+    let newBase = this.state.value.toUpperCase();
     let found = 0;
     if (newBase.length === 3) { newBase = 'C' + newBase }
     this.props.three_hour_metars.forEach((metar) => {

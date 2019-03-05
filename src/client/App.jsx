@@ -39,8 +39,7 @@ export default class App extends Component {
     const metar = this.state.three_hour_metars !== null ? this.state.three_hour_metars[0].raw_text[0] : ''
     return (
       <div>
-        <p>{metar}</p>
-        <button id="open-planner" onClick={() => this.setState({ isPaneOpenLeft: true })}>Planner <FontAwesomeIcon icon="angle-double-right"></FontAwesomeIcon></button>
+        <button className="btn btn-secondary col-sm-1 col-sm-offset-4" id="open-planner" onClick={() => this.setState({ isPaneOpenLeft: true })}>Planner <FontAwesomeIcon icon="angle-double-right"></FontAwesomeIcon></button>
         <SlidingPane
                 closeIcon={<div><FontAwesomeIcon icon="angle-double-left"></FontAwesomeIcon></div>}
                 isOpen={ this.state.isPaneOpenLeft }

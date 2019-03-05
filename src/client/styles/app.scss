@@ -17,6 +17,12 @@ body {
   .card {
     border-style: solid;
     padding: 1rem;
+
+    #metar-pane {
+      display: inline-block;
+      vertical-align: top;
+      width: 45%;
+    }
   }
 }
 

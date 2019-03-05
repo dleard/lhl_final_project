@@ -6,7 +6,7 @@ export default class Planner extends Component {
 
   state = {
     value: '',
-    bases: [] 
+    bases: ['CYYJ', 'CYVR'] 
   }
 
   getVictoriaMetars = (base) => {
@@ -33,7 +33,6 @@ export default class Planner extends Component {
 
   render() {
     const vicMetars = this.getVictoriaMetars();
-    console.log(this.state.bases);
     return (
       <div id="planner">
 

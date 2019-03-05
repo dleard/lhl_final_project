@@ -23,7 +23,7 @@ export default class Planner_Item extends Component {
 
     /** THIS NEEDS REFACTORIING! */
 
-    const ctxL = document.getElementById("tempChart").getContext('2d');
+    const ctxL = document.getElementById(this.props.metars[0].station_id[0] + 'temp').getContext('2d');
     const tempChart = new Chart(ctxL, {
       type: 'line',
       data: {
@@ -46,7 +46,7 @@ export default class Planner_Item extends Component {
       }
     });
 
-    const ctxL1 = document.getElementById("vizChart").getContext('2d');
+    const ctxL1 = document.getElementById(this.props.metars[0].station_id[0] + 'viz').getContext('2d');
     const vizChart = new Chart(ctxL1, {
       type: 'line',
       data: {
@@ -69,7 +69,7 @@ export default class Planner_Item extends Component {
       }
     });
 
-    const ctxL2 = document.getElementById("windChart").getContext('2d');
+    const ctxL2 = document.getElementById(this.props.metars[0].station_id[0] + 'wind').getContext('2d');
     const windChart = new Chart(ctxL2, {
       type: 'line',
       data: {
@@ -122,18 +122,18 @@ export default class Planner_Item extends Component {
             <div style={{top: "100px", width: "120%"}} className="tab-content">
               <div style={{width: "100%"}} id="temp" className="tab-pane fade in active">
                 <div style={{marginTop: "30px", width: "100%"}}>
-                  <canvas id="tempChart"></canvas>
+                  <canvas id={this.props.metars[0].station_id[0] + 'temp'}></canvas>
                 </div>
               </div>
               
               <div id="viz" className="tab-pane fade">
                 <div style={{marginTop: "30px", width: "100%"}}>
-                  <canvas id="vizChart"></canvas>
+                  <canvas id={this.props.metars[0].station_id[0] + 'viz'}></canvas>
                 </div>
               </div>
               <div id="wind" className="tab-pane fade">
               <div style={{marginTop: "30px", width: "100%"}}>
-                  <canvas id="windChart"></canvas>
+                  <canvas id={this.props.metars[0].station_id[0] + 'wind'}></canvas>
                 </div>
               </div>
             </div>

@@ -20,6 +20,9 @@ export default class Planner_Item extends Component {
       winds.push(metar.wind_speed_kt[0]);
       viz.push(metar.visibility_statute_mi[0])
     })
+
+    /** THIS NEEDS REFACTORIING! */
+
     const ctxL = document.getElementById("tempChart").getContext('2d');
     const tempChart = new Chart(ctxL, {
       type: 'line',

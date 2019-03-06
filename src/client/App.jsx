@@ -12,12 +12,13 @@ export default class App extends Component {
   state = {
     username: null,
     isPaneOpenLeft: false,
-    three_hour_metars: null
+    three_hour_metars: null,
+    taffs: null
   };
 
   componentDidMount() {
     Modal.setAppElement('body');
-    fetch("/api/getxml")
+    fetch("/api/getmetars")
     .then(res => res.json())
     .then(result => {
       const results = result.response.data[0].METAR;
@@ -25,9 +26,17 @@ export default class App extends Component {
     })
     .catch(error => console.log(error));
     
+    fetch("/api/gettaffs")
+    .then(res => res.json())
+    .then(result => {
+      const results = result.response.data;
+      this.setState({taffs: results})
+    })
+    .catch(error => console.log(error));
   }
 
   render() {
+    if (this.state.taffs !== null) { console.log(this.state.taffs) }
     return (
       <div>
         <button id="open-planner" onClick={() => this.setState({ isPaneOpenLeft: true })}>Planner <FontAwesomeIcon icon="angle-double-right"></FontAwesomeIcon></button>

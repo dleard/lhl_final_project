@@ -13,7 +13,8 @@ export default class App extends Component {
     username: null,
     isPaneOpenLeft: false,
     three_hour_metars: null,
-    taffs: null
+    taffs: null,
+    bases: ['CYYJ', 'CYVR']
   };
 
   componentDidMount() {
@@ -35,8 +36,11 @@ export default class App extends Component {
     .catch(error => console.log(error));
   }
 
+  addToPlanner = (bases) => {
+    this.setState({bases})
+  }
+
   render() {
-    if (this.state.taffs !== null) { console.log(this.state.taffs) }
     return (
       <div>
         <button id="open-planner" onClick={() => this.setState({ isPaneOpenLeft: true })}>Planner <FontAwesomeIcon icon="angle-double-right"></FontAwesomeIcon></button>
@@ -47,7 +51,7 @@ export default class App extends Component {
                 from='left'
                 width='50%'
                 onRequestClose={ () => this.setState({ isPaneOpenLeft: false }) }>
-                <div><Planner three_hour_metars={this.state.three_hour_metars} taffs={this.state.taffs} /></div>
+                <div><Planner addToPlanner={this.addToPlanner} bases={this.state.bases} three_hour_metars={this.state.three_hour_metars} taffs={this.state.taffs} /></div>
             </SlidingPane>
         <MapContainer />
       </div>

@@ -12,8 +12,7 @@
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot --host 0.0.0.0",
     "server": "nodemon -L src/server/index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "prod": "webpack -p",
-    
+    "prod": "webpack -p"
   },
   "author": "Dylan Leard, Nick Doyle",
   "license": "ISC",

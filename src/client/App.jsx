@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Planner from './components/Planner'
+import Dashboard from './components/Dashboard'
 import ReactImage from './react.png';
 import SlidingPane from 'react-sliding-pane';
 import 'react-sliding-pane/dist/react-sliding-pane.css';
@@ -14,7 +15,8 @@ export default class App extends Component {
     isPaneOpenLeft: false,
     three_hour_metars: null,
     taffs: null,
-    bases: ['CYYJ', 'CYVR']
+    bases: ['CYYJ', 'CYVR'],
+    show_dash: true
   };
 
   componentDidMount() {
@@ -40,6 +42,14 @@ export default class App extends Component {
     this.setState({bases})
   }
 
+  showDash = () => {
+    this.setState({ show_dash: true });
+  };
+
+  hideDash = () => {
+    this.setState({ show_dash: false });
+  };
+
   render() {
     return (
       <div>
@@ -53,6 +63,10 @@ export default class App extends Component {
                 onRequestClose={ () => this.setState({ isPaneOpenLeft: false }) }>
                 <div><Planner addToPlanner={this.addToPlanner} bases={this.state.bases} three_hour_metars={this.state.three_hour_metars} taffs={this.state.taffs} /></div>
             </SlidingPane>
+        <Dashboard show={this.state.show_dash} handleClose={this.hideDash}>
+          <p>Modal</p>
+          <p>Data</p>
+        </Dashboard>
         <MapContainer />
       </div>
     );

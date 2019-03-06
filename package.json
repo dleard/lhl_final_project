@@ -2,6 +2,9 @@
   "name": "co-pilot",
   "version": "1.0.0",
   "description": "Flight data app",
+  "engines": {
+    "node": "8.9.4"
+  },
   "main": "src/server/index.js",
   "scripts": {
     "build": "webpack --mode production",

@@ -6,7 +6,6 @@ export default class Planner extends Component {
 
   state = {
     value: '',
-    bases: ['CYYJ', 'CYVR'] 
   }
 
   getMetars = (base) => {
@@ -22,7 +21,6 @@ export default class Planner extends Component {
   getTaff = (base) => {
     let single_taff = '';  
     this.props.taffs.forEach((taff) => {
-      console.log(taff);
       if (taff.station_id[0] === base) {
         single_taff = taff; 
       }
@@ -45,9 +43,9 @@ export default class Planner extends Component {
       }
     });
     if (found === 1) {
-      const all_bases = this.state.bases.concat(newBase);
-      console.log(all_bases);
-      this.setState({bases: all_bases});
+      const all_bases = this.props.bases.concat(newBase);
+      //this.setState({bases: all_bases});
+      this.props.addToPlanner(all_bases);
     }
     else {
       alert(`${newBase} is an invalid airport code`)
@@ -67,7 +65,7 @@ export default class Planner extends Component {
           </form>
         </div>
 
-        {this.state.bases.map((base) => {
+        {this.props.bases.map((base) => {
               return (
                 <Planner_Item key = {base} metars={this.getMetars(base)} taff={this.getTaff(base)}/>
               )

@@ -20,19 +20,19 @@ export default class Dashboard extends Component {
 
   render() {
     const showHideClassName = this.props.show ? "dashboard display-block" : "dashboard display-none";
-
+    const st = this.state
     return (
       <div className={showHideClassName}>
         <section className="dashboard-main">
           <div>
-          <form id="config" onSubmit={this.props.handleConfigSubmit}>
+          <form id="config" onSubmit={(e) => this.props.handleConfigSubmit(e,st)}>
             <table className="table table-bordered">
               <thead style={{background: "#ebebeb"}}>
                 <tr>
                   <th>Select Province</th>
                 </tr>
               </thead>
-              <tbody className="input-group" onChange={this.selectProvince} >
+              <tbody className="input-group" onChange={this.selectProvince} onClick={this.unCheck} >
                 <tr>
                   <td>
                     <label className="radio-inline"><input type="radio" name="BC"/>BC</label>
@@ -66,9 +66,8 @@ export default class Dashboard extends Component {
               </tbody>
             </table>
             <button className="btn btn-danger" onClick={this.props.handleClose}>close</button>
-            <button className="btn btn-success" style={{float: "right"}} type="submit">Save Config</button>
+            <button className="btn btn-success" onClick={() => this.props.handleConfigSubmit(st)} style={{float: "right"}} type="button">Save Config</button>
           </form>
-    
           </div>
         </section>
       </div>

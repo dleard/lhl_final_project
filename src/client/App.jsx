@@ -16,7 +16,9 @@ export default class App extends Component {
     three_hour_metars: null,
     taffs: null,
     bases: ['CYYJ', 'CYVR'],
-    show_dash: true
+    show_dash: false,
+    province: null,
+    start_location: null
   };
 
   componentDidMount() {
@@ -50,15 +52,16 @@ export default class App extends Component {
     this.setState({ show_dash: false });
   };
 
-  handleConfigSubmit = (evt) => {
-    evt.preventDefault();
-    console.log(evt);
+  handleConfigSubmit = (st) => {
+    this.setState({show_dash: false, start_location: st.location, province: st.selected_province});
   }
 
   render() {
+    console.log(this.state.province, this.state.start_location);
     return (
       <div>
         <button id="open-planner" onClick={() => this.setState({ isPaneOpenLeft: true })}>Planner <FontAwesomeIcon icon="angle-double-right"></FontAwesomeIcon></button>
+        <button id="open-settings" onClick={() => this.setState({ show_dash: true })}>SETTINGS</button>
         <SlidingPane
                 closeIcon={<div><FontAwesomeIcon icon="angle-double-left"></FontAwesomeIcon></div>}
                 isOpen={ this.state.isPaneOpenLeft }

@@ -138,7 +138,19 @@ export default class Planner_Item extends Component {
               </div>
             </div>
           </div>
-          <h4>Taff: {this.props.taff}</h4>
+          <table className="table table-bordered">
+            <thead style={{background: "#ebebeb"}}>
+              <tr>
+                <th>TAFF</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{this.props.taff}</td>
+              </tr>
+            </tbody>
+          </table>
+          
         </div>
       </div>
     );

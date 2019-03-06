@@ -1,6 +1,23 @@
 import React, { Component } from 'react';
+import { ETIME } from 'constants';
 
 export default class Dashboard extends Component {
+
+  state = {
+    selected_province: null,
+    location: null
+  }
+
+  selectProvince = (e) => {
+    e.persist();
+    e.preventDefault;
+    this.setState({selected_province: e.target.name});
+  }
+
+  setStartLocation = (e) => {
+    this.setState({location: event.target.value});
+  }
+
   render() {
     const showHideClassName = this.props.show ? "dashboard display-block" : "dashboard display-none";
 
@@ -8,27 +25,27 @@ export default class Dashboard extends Component {
       <div className={showHideClassName}>
         <section className="dashboard-main">
           <div>
-          <form id="base-search" onSubmit={this.handleSubmit}>
+          <form id="config" onSubmit={this.props.handleConfigSubmit}>
             <table className="table table-bordered">
               <thead style={{background: "#ebebeb"}}>
                 <tr>
                   <th>Select Province</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="input-group" onChange={this.selectProvince} >
                 <tr>
                   <td>
-                    <label className="radio-inline"><input type="radio" name="optradio" checked/>BC</label>
-                    <label className="radio-inline"><input type="radio" name="optradio"/>AB</label>
-                    <label className="radio-inline"><input type="radio" name="optradio"/>SK</label>
-                    <label className="radio-inline"><input type="radio" name="optradio"/>MB</label>
-                    <label className="radio-inline"><input type="radio" name="optradio"/>ON</label>
-                    <label className="radio-inline"><input type="radio" name="optradio"/>QC</label>
+                    <label className="radio-inline"><input type="radio" name="BC"/>BC</label>
+                    <label className="radio-inline"><input type="radio" name="AB"/>AB</label>
+                    <label className="radio-inline"><input type="radio" name="SK"/>SK</label>
+                    <label className="radio-inline"><input type="radio" name="MB"/>MB</label>
+                    <label className="radio-inline"><input type="radio" name="ON"/>ON</label>
+                    <label className="radio-inline"><input type="radio" name="QC"/>QC</label>
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <label className="radio-inline"><input type="radio" name="optradio"/>All Canada</label>
+                    <label className="radio-inline"><input type="radio" name="CA"/>All Canada</label>
                   </td>
                 </tr>
               </tbody>
@@ -43,7 +60,7 @@ export default class Dashboard extends Component {
               <tbody>
                 <tr>
                   <td>
-                    <input type="text" placeholder="CYYJ"  />
+                    <input type="text" placeholder="CYYJ"  onChange={this.setStartLocation}/>
                   </td>
                 </tr>
               </tbody>

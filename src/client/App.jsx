@@ -50,6 +50,11 @@ export default class App extends Component {
     this.setState({ show_dash: false });
   };
 
+  handleConfigSubmit = (evt) => {
+    evt.preventDefault();
+    console.log(evt);
+  }
+
   render() {
     return (
       <div>
@@ -63,7 +68,7 @@ export default class App extends Component {
                 onRequestClose={ () => this.setState({ isPaneOpenLeft: false }) }>
                 <div><Planner addToPlanner={this.addToPlanner} bases={this.state.bases} three_hour_metars={this.state.three_hour_metars} taffs={this.state.taffs} /></div>
             </SlidingPane>
-        <Dashboard show={this.state.show_dash} handleClose={this.hideDash}>
+        <Dashboard show={this.state.show_dash} handleClose={this.hideDash} handleConfigSubmit={this.handleConfigSubmit}>
           <p>Modal</p>
           <p>Data</p>
         </Dashboard>

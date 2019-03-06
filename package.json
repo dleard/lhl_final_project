@@ -9,7 +9,8 @@
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot --host 0.0.0.0",
     "server": "nodemon -L src/server/index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "prod": "webpack -p"
+    "prod": "webpack -p",
+    "heroku-postbuild": "webpack -p"
   },
   "author": "Dylan Leard, Nick Doyle",
   "license": "ISC",
@@ -43,6 +44,7 @@
     "clean-webpack-plugin": "^1.0.0",
     "concurrently": "^4.0.0",
     "css-loader": "^2.0.0",
+    "dotenv": "^6.2.0",
     "eslint": "^5.0.0",
     "eslint-config-airbnb": "^17.0.0",
     "eslint-plugin-import": "^2.11.0",

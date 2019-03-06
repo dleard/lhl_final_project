@@ -19,6 +19,17 @@ export default class Planner extends Component {
       return metars;
   }
 
+  getTaff = (base) => {
+    let single_taff = '';  
+    this.props.taffs.forEach((taff) => {
+      console.log(taff);
+      if (taff.station_id[0] === base) {
+        single_taff = taff; 
+      }
+    });
+    return single_taff.raw_text;
+  }
+
   handleChange = (event) => {
     this.setState({value: event.target.value});
   }
@@ -58,7 +69,7 @@ export default class Planner extends Component {
 
         {this.state.bases.map((base) => {
               return (
-                <Planner_Item key = {base} metars={this.getMetars(base)}/>
+                <Planner_Item key = {base} metars={this.getMetars(base)} taff={this.getTaff(base)}/>
               )
             })}
       </div>

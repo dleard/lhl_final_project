@@ -30,7 +30,7 @@ export default class App extends Component {
     .then(res => res.json())
     .then(result => {
       const results = result.response.data;
-      this.setState({taffs: results})
+      this.setState({taffs: results[0].TAF})
     })
     .catch(error => console.log(error));
   }
@@ -47,7 +47,7 @@ export default class App extends Component {
                 from='left'
                 width='50%'
                 onRequestClose={ () => this.setState({ isPaneOpenLeft: false }) }>
-                <div><Planner three_hour_metars={this.state.three_hour_metars} /></div>
+                <div><Planner three_hour_metars={this.state.three_hour_metars} taffs={this.state.taffs} /></div>
             </SlidingPane>
         <MapContainer />
       </div>

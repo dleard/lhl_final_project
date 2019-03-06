@@ -94,6 +94,7 @@ export default class Planner_Item extends Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <div className="card">
         <div className="card-header">
@@ -137,7 +138,7 @@ export default class Planner_Item extends Component {
               </div>
             </div>
           </div>
-          <h4>Alternate Bases: </h4>
+          <h4>Taff: {this.props.taff}</h4>
         </div>
       </div>
     );

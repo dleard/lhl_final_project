@@ -45,6 +45,7 @@ export class MapContainer extends Component {
             visible = { this.state.showingInfoWindow }
           >
             <h1>HELLO</h1>
+            
           </InfoWindow>
           
         </Map>

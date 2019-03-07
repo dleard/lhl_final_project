@@ -3,12 +3,32 @@ h1 {
 }
 
 body {
-  text-align: center;
-  margin: auto;
-
+  
   #open-planner {
     position: absolute;
     top:20px;
+  }
+
+  #open-settings {
+    position: absolute;
+    top:7px;
+    left: 100px;
+  }
+
+  .card-header {
+    padding: 1rem;
+    background: #ebebeb;  
+  }
+
+  .card {
+    border-style: solid;
+    padding: 1rem;
+
+    #metar-pane {
+      display: inline-block;
+      vertical-align: top;
+      width: 45%;
+    }
   }
 }
 
@@ -43,6 +63,8 @@ body #open-planner {
 }
 
 .navbar {
+  text-align: center;
+  margin: auto;
   background: #23383f;
   border-bottom: 1px solid black;
   height: 5vh;
@@ -64,3 +86,69 @@ body #open-planner {
   padding: 0 10px;
   text-decoration: none;
 }
+
+.search-container::before {
+  
+  margin: 10em;
+
+  form {
+    float: right;
+  }
+
+  input[type=text] {
+    padding: 6px;
+    margin-top: 5px;
+    font-size: 17px;
+    border-style: solid;
+  }
+
+  button {
+    padding: 6px 10px;
+    margin-top: px;
+    margin-right: 16px;
+    background: #ddd;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+.search-container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.dashboard {
+  position: fixed;
+  left: 40%;
+  width: 40%;
+  height: 40%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 2;
+  align-items: center;
+}
+
+.dashboard-main {
+  position:absolute;
+  background: white;
+  width: 80%;
+  height: auto;
+  padding: 20px;
+  
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 5%;
+  
+  z-index: 2;
+}
+
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
+}
+
+

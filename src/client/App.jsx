@@ -48,7 +48,8 @@ export default class App extends Component {
     this.setState({ show_dash: true });
   };
 
-  hideDash = () => {
+  hideDash = (e) => {
+    e.preventDefault();
     this.setState({ show_dash: false });
   };
 
@@ -57,7 +58,6 @@ export default class App extends Component {
   }
 
   render() {
-    console.log(this.state.province, this.state.start_location);
     return (
       <div>
         <button id="open-planner" onClick={() => this.setState({ isPaneOpenLeft: true })}>Planner <FontAwesomeIcon icon="angle-double-right"></FontAwesomeIcon></button>
@@ -71,10 +71,7 @@ export default class App extends Component {
                 onRequestClose={ () => this.setState({ isPaneOpenLeft: false }) }>
                 <div><Planner addToPlanner={this.addToPlanner} bases={this.state.bases} three_hour_metars={this.state.three_hour_metars} taffs={this.state.taffs} /></div>
             </SlidingPane>
-        <Dashboard show={this.state.show_dash} handleClose={this.hideDash} handleConfigSubmit={this.handleConfigSubmit}>
-          <p>Modal</p>
-          <p>Data</p>
-        </Dashboard>
+        <Dashboard show={this.state.show_dash} handleClose={this.hideDash} handleConfigSubmit={this.handleConfigSubmit}/>
         <MapContainer />
       </div>
     );

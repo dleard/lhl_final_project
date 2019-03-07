@@ -30,7 +30,7 @@ export default class Dashboard extends Component {
       <div className={showHideClassName}>
         <section className="dashboard-main">
           <div>
-          <form id="config" onSubmit={(e) => this.props.handleConfigSubmit(e,st)}>
+          <form id="config">
             <table className="table table-bordered">
               <thead style={{background: "#ebebeb"}}>
                 <tr>
@@ -41,7 +41,7 @@ export default class Dashboard extends Component {
                 <tr>
                   <td>
                     <label className="radio-inline"><input type="radio" name="BC"/>BC</label>
-                    <label id="AB" className="radio-inline"><input type="radio" name="AB"/>AB</label>
+                    <label className="radio-inline"><input type="radio" name="AB"/>AB</label>
                     <label className="radio-inline"><input type="radio" name="SK"/>SK</label>
                     <label className="radio-inline"><input type="radio" name="MB"/>MB</label>
                     <label className="radio-inline"><input type="radio" name="ON"/>ON</label>
@@ -70,7 +70,7 @@ export default class Dashboard extends Component {
                 </tr>
               </tbody>
             </table>
-            <button className="btn btn-danger" onClick={this.props.handleClose}>close</button>
+            <button className="btn btn-danger" onClick={(e) => this.props.handleClose(e)}>close</button>
             <button className="btn btn-success" onClick={() => this.props.handleConfigSubmit(st)} style={{float: "right"}} type="button">Save Config</button>
           </form>
           </div>

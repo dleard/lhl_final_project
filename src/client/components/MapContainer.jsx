@@ -334,6 +334,17 @@ const styleObject = [
 ];
 
 export class MapContainer extends Component {
+  constructor() {
+    super(); // SUPER IMPORTANT!  IF YOU LEAVE THIS OUT, STUFF BREAKS!
+
+    this.onMarkerClick = this.onMarkerClick.bind(this);
+  }
+
+  onMarkerClick(evt){
+    console.log(evt);
+    this.props.viewBase(evt.station);
+  }
+
   render() {
     console.log('metars in mapcontainer!');
     console.log(this.props.metars);
@@ -342,7 +353,7 @@ export class MapContainer extends Component {
       console.log('metar loaded!');
       markers = this.props.metars.map(marker => (
         //<Marker options={{icon: 'your_icon_url', label:
-        <Marker options={{icon: '/public/airport.png', label: `${marker.station_id}`}} key={uuidv4()} station={marker.station_id} position={{ lat: `${marker.latitude[0]}`, lng: `${marker.longitude[0]}` }} />
+        <Marker options={{icon: '/public/airport.png', label: `${marker.station_id}`}} onClick={this.onMarkerClick} key={uuidv4()} station={marker.station_id} position={{ lat: `${marker.latitude[0]}`, lng: `${marker.longitude[0]}` }} />
         //<AirportMarker key={uuidv4()} data={marker} />
       ));
     }

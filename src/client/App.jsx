@@ -9,11 +9,20 @@ import StyledMap from './components/StyledMap.jsx';
 import Modal from 'react-modal';
 
 export default class App extends Component {
+  constructor() {
+    super(); // SUPER IMPORTANT!  IF YOU LEAVE THIS OUT, STUFF BREAKS!
+
+    this.viewBase = this.viewBase.bind(this);
+  }
   state = {
     username: null,
     isPaneOpenLeft: false,
     three_hour_metars: null
   };
+
+  viewBase(code) {
+
+  }
 
   componentDidMount() {
     Modal.setAppElement('body');
@@ -49,7 +58,7 @@ export default class App extends Component {
                 onRequestClose={ () => this.setState({ isPaneOpenLeft: false }) }>
                 <div><Planner/></div>
             </SlidingPane>
-        <MapContainer metars={this.state.three_hour_metars} />
+        <MapContainer viewBase={this.viewBase} metars={this.state.three_hour_metars} />
       </div>
     );
   }

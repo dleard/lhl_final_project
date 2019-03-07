@@ -17,6 +17,16 @@ app.get('/api/getmetars', (req,res) => {
   })
 });
 
+app.get(`/api/getmetars/:province`, (req, res) => {
+  console.log(req.params.province);
+  axios.get(`https://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=@${req.params.province}&hoursBeforeNow=3`)
+  .then(response => {
+    parseString(response.data, function (err, result) {
+      res.send(result)
+    });        
+  })
+})
+
 app.get('/api/gettaffs', (req,res) => {
   axios.get(`https://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=tafs&requestType=retrieve&format=xml&stationString=@BC&hoursBeforeNow=1  `)
   .then(response => {

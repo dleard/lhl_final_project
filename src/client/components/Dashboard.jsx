@@ -10,8 +10,13 @@ export default class Dashboard extends Component {
 
   selectProvince = (e) => {
     e.persist();
-    e.preventDefault;
-    this.setState({selected_province: e.target.name});
+    this.setState({selected_province: e.target.name}, () => {
+      document.querySelectorAll("input:checked").forEach((node) => {
+        if (node.name !== this.state.selected_province) {
+          node.checked = false;
+        }
+      });
+    });
   }
 
   setStartLocation = (e) => {
@@ -32,11 +37,11 @@ export default class Dashboard extends Component {
                   <th>Select Province</th>
                 </tr>
               </thead>
-              <tbody className="input-group" onChange={this.selectProvince} onClick={this.unCheck} >
+              <tbody className="input-group" onChange={this.selectProvince}>
                 <tr>
                   <td>
                     <label className="radio-inline"><input type="radio" name="BC"/>BC</label>
-                    <label className="radio-inline"><input type="radio" name="AB"/>AB</label>
+                    <label id="AB" className="radio-inline"><input type="radio" name="AB"/>AB</label>
                     <label className="radio-inline"><input type="radio" name="SK"/>SK</label>
                     <label className="radio-inline"><input type="radio" name="MB"/>MB</label>
                     <label className="radio-inline"><input type="radio" name="ON"/>ON</label>

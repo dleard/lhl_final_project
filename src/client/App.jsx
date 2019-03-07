@@ -65,7 +65,7 @@ export default class App extends Component {
   }
 
   render() {
-    if (this.state.three_hour_metars !== null) { console.log(this.state.three_hour_metars[0]) }
+    if (this.state.three_hour_metars !== null) { console.log(this.state.three_hour_metars[0].longitude) }
     return (
       <div>
         <button id="open-planner" onClick={() => this.setState({ isPaneOpenLeft: true })}>Planner <FontAwesomeIcon icon="angle-double-right"></FontAwesomeIcon></button>

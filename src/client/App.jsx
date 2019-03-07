@@ -58,6 +58,7 @@ export default class App extends Component {
     .then(result => {
       const results = result.response.data[0].METAR;
       this.setState({three_hour_metars: results})
+      console.log(results);
     })
     .catch(error => console.log(error));
   }

@@ -15,7 +15,7 @@ export default class App extends Component {
     isPaneOpenLeft: false,
     three_hour_metars: null,
     taffs: null,
-    bases: ['CYYJ', 'CYVR'],
+    bases: [],
     show_dash: false,
     province: null,
     start_location: null
@@ -55,9 +55,17 @@ export default class App extends Component {
 
   handleConfigSubmit = (st) => {
     this.setState({show_dash: false, start_location: st.location, province: st.selected_province});
+    fetch(`api/getmetars/${st.selected_province}`)
+    .then(res => res.json())
+    .then(result => {
+      const results = result.response.data[0].METAR;
+      this.setState({three_hour_metars: results})
+    })
+    .catch(error => console.log(error));
   }
 
   render() {
+    if (this.state.three_hour_metars !== null) { console.log(this.state.three_hour_metars[0]) }
     return (
       <div>
         <button id="open-planner" onClick={() => this.setState({ isPaneOpenLeft: true })}>Planner <FontAwesomeIcon icon="angle-double-right"></FontAwesomeIcon></button>

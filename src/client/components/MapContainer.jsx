@@ -8,7 +8,7 @@ const styleObject = require('../styleObject.json');
 
 export class MapContainer extends Component {
   constructor(props) {
-    super(props); // SUPER IMPORTANT!  IF YOU LEAVE THIS OUT, STUFF BREAKS!
+    super(props); 
 
     this.state = {
       showingInfoWindow: false,
@@ -32,8 +32,6 @@ export class MapContainer extends Component {
     const metars = [];
     
     if (this.props.metars !== null && this.state.activeMarker.station !== undefined) {
-      console.log(this.state.activeMarker.station);
-    console.log(this.props.metars[0])
       this.props.metars.forEach((metar) => {
         if (this.state.activeMarker.station[0] === metar.station_id[0]) { metars.push(metar)}
       })
@@ -50,8 +48,6 @@ export class MapContainer extends Component {
   render() {
     let markers;
     if (this.props.metars != null) {
-      console.log('metar loaded!');
-      console.log(this.props.metars);
       markers = this.props.metars.map(marker => (
         <Marker options={{icon: '/public/airport.png', label: `${marker.station_id}`}} onClick={this.onMarkerClick} key={uuidv4()} station={marker.station_id} position={{ lat: `${marker.latitude[0]}`, lng: `${marker.longitude[0]}` }} /> 
       ));

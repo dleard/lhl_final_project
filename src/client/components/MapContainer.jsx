@@ -7,8 +7,8 @@ const uuidv4 = require('uuid/v4');
 const styleObject = require('../styleObject.json');
 
 export class MapContainer extends Component {
-  constructor() {
-    super(); // SUPER IMPORTANT!  IF YOU LEAVE THIS OUT, STUFF BREAKS!
+  constructor(props) {
+    super(props); // SUPER IMPORTANT!  IF YOU LEAVE THIS OUT, STUFF BREAKS!
 
     this.state = {
       showingInfoWindow: false,
@@ -16,9 +16,6 @@ export class MapContainer extends Component {
       selectedPlace: {}
     }
     
-    
-    
-
     this.onMarkerClick = this.onMarkerClick.bind(this);
   }
 
@@ -31,11 +28,6 @@ export class MapContainer extends Component {
     });
   }
 
-  // onMarkerClick(evt){
-  //   console.log(evt);
-  //   this.props.viewBase(evt.station);
-  // }
-
   render() {
     let markers;
     if (this.props.metars != null) {
@@ -47,7 +39,6 @@ export class MapContainer extends Component {
     return (
       <div id='map-background' className="map-background map">
         <Map google={this.props.google} styles={styleObject} center={{ lat: 55.427, lng: -123.367 }} zoom={5}>
-          {/* <MarkerSet metars={this.props.metars} /> */}
           {markers}
           <InfoWindow
             marker = { this.state.activeMarker }

@@ -35,7 +35,8 @@ export class MapContainer extends Component {
       this.props.metars.forEach((metar) => {
         if (this.state.activeMarker.station[0] === metar.station_id[0]) { metars.push(metar)}
       })
-      return  <li key = {metars[0].raw_text[0]} className="list-group-item">{metars[0].raw_text[0]}</li>
+      const singleMetar = metars[0].raw_text[0];
+      return  <li key = {singleMetar} className="list-group-item">{singleMetar}</li>
       // return metars.map((metar) => {
       //   return (
       //     <li key = {metar.raw_text[0]} className="list-group-item">{metar.raw_text[0]}</li>
@@ -59,13 +60,13 @@ export class MapContainer extends Component {
           <InfoWindow
             marker = { this.state.activeMarker }
             visible = { this.state.showingInfoWindow }
-          >
+          ><div>
             <ul className="list-group">
             <li style={{textAlign: "center"}}className="list-group-item active">Raw Metars</li>
             {this.renderMetars()}
           </ul>
           <button className="btn btn-primary" onClick={() => console.log('hi')} type="button"><FontAwesomeIcon icon="plus-circle"></FontAwesomeIcon>Add to Planner</button>
-
+          </div>
           </InfoWindow>
           
         </Map>

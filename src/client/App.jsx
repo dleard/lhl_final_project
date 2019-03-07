@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import Planner from './components/Planner'
 import Dashboard from './components/Dashboard'
-import ReactImage from './react.png';
 import SlidingPane from 'react-sliding-pane';
 import 'react-sliding-pane/dist/react-sliding-pane.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import MapContainer from './components/MapContainer.jsx';
-import StyledMap from './components/StyledMap.jsx';
 import Modal from 'react-modal';
 
 export default class App extends Component {
@@ -65,7 +63,6 @@ export default class App extends Component {
   }
 
   render() {
-    if (this.state.three_hour_metars !== null) { console.log(this.state.three_hour_metars[0].longitude) }
     return (
       <div>
         <button id="open-planner" onClick={() => this.setState({ isPaneOpenLeft: true })}>Planner <FontAwesomeIcon icon="angle-double-right"></FontAwesomeIcon></button>

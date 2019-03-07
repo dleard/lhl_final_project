@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+const dotenv = require('dotenv')
 
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 

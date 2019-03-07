@@ -35,9 +35,6 @@ export default class App extends Component {
       results.forEach((metar) => {
         if (metar.station_id[0] === 'CYYJ') { vic.push(metar) }
       });
-      console.log(vic)
-      console.log(this.state.three_hour_metars);
-      
     })
     .catch(error => console.log(error));
     

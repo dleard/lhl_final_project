@@ -19,8 +19,6 @@ export class MapContainer extends Component {
   }
 
   render() {
-    console.log('metars in mapcontainer!');
-    console.log(this.props.metars);
     let markers;
     if (this.props.metars != null) {
       console.log('metar loaded!');

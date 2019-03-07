@@ -10,22 +10,38 @@ export class MapContainer extends Component {
   constructor() {
     super(); // SUPER IMPORTANT!  IF YOU LEAVE THIS OUT, STUFF BREAKS!
 
+    this.state = {
+      showingInfoWindow: false,
+      activeMarker: {},
+      selectedPlace: {}
+    }
+    
+    
+    
+
     this.onMarkerClick = this.onMarkerClick.bind(this);
   }
 
-  onMarkerClick(evt){
-    console.log(evt);
-    this.props.viewBase(evt.station);
+  onMarkerClick = (props, marker, e) => {
+    e.preventDefault;
+    this.setState({
+      selectedPlace: props,
+      activeMarker: marker,
+      showingInfoWindow: true
+    });
   }
+
+  // onMarkerClick(evt){
+  //   console.log(evt);
+  //   this.props.viewBase(evt.station);
+  // }
 
   render() {
     let markers;
     if (this.props.metars != null) {
       console.log('metar loaded!');
       markers = this.props.metars.map(marker => (
-        //<Marker options={{icon: 'your_icon_url', label:
-        <Marker options={{icon: '/public/airport.png', label: `${marker.station_id}`}} onClick={this.onMarkerClick} key={uuidv4()} station={marker.station_id} position={{ lat: `${marker.latitude[0]}`, lng: `${marker.longitude[0]}` }} />
-        //<AirportMarker key={uuidv4()} data={marker} />
+        <Marker options={{icon: '/public/airport.png', label: `${marker.station_id}`}} onClick={this.onMarkerClick} key={uuidv4()} station={marker.station_id} position={{ lat: `${marker.latitude[0]}`, lng: `${marker.longitude[0]}` }} /> 
       ));
     }
     return (
@@ -33,6 +49,12 @@ export class MapContainer extends Component {
         <Map google={this.props.google} styles={styleObject} center={{ lat: 55.427, lng: -123.367 }} zoom={5}>
           {/* <MarkerSet metars={this.props.metars} /> */}
           {markers}
+          <InfoWindow
+            marker = { this.state.activeMarker }
+            visible = { this.state.showingInfoWindow }
+          >
+            <h1>HELLO</h1>
+          </InfoWindow>
           
         </Map>
       </div>

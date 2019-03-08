@@ -62,10 +62,10 @@ export class MapContainer extends Component {
             visible = { this.state.showingInfoWindow }
           ><div>
             <ul className="list-group">
-            <li style={{textAlign: "center"}}className="list-group-item active">Raw Metars</li>
+            <li style={{textAlign: "center"}}className="list-group-item active">Metar</li>
             {this.renderMetars()}
           </ul>
-          <button className="btn btn-primary" onClick={() => console.log('hi')} type="button"><FontAwesomeIcon icon="plus-circle"></FontAwesomeIcon>Add to Planner</button>
+          <button className="btn btn-primary" onClick={() => console.log('hi')} type="button"><FontAwesomeIcon icon="plus-circle"></FontAwesomeIcon> Add to Planner</button>
           </div>
           </InfoWindow>
           

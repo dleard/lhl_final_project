@@ -63,9 +63,13 @@ export default class App extends Component {
   handleConfigSubmit = (st) => {
 
     this.setState({bases: [], show_dash: false, province: st.selected_province});
-    let start_base = st.location.toUpperCase();
-    if (st.location.length === 3) { start_base = "C" + start_base }
-    
+    let start_base;
+    if (st.location !== null) {
+      start_base = st.location.toUpperCase();
+      if (st.location.length === 3) { start_base = "C" + start_base }
+    } else {
+      start_base = null;
+    }
     fetch(`api/getmetars/${st.selected_province}`)
     .then(res => res.json())
     .then(result => {
@@ -74,7 +78,7 @@ export default class App extends Component {
         if (start_base === metar.station_id[0]) { this.setState({start_location: start_base}) }
       })
       if (start_base !== this.state.start_location) { alert('Start location invalid') }
-      else {
+      else if (start_base !== null) {
         this.setState({bases: [start_base]})
       }
       this.setState({three_hour_metars: results})

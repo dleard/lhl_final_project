@@ -91,7 +91,9 @@ export default class App extends Component {
   }
 
   infoWindowAddToPlanner = (base) => {
-    console.log(base);
+    const currentBases = this.state.bases;
+    const allBases = [...currentBases, base]
+    this.setState({bases: allBases});
   }
 
   render() {

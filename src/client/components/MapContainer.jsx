@@ -27,7 +27,7 @@ export class MapContainer extends Component {
       showingInfoWindow: true
     });
   }
-  
+
   renderMetars = () => {
     const metars = [];
     
@@ -39,7 +39,6 @@ export class MapContainer extends Component {
         const singleMetar = metars[0].raw_text[0];
         return  <li key = {singleMetar} className="list-group-item">{singleMetar}</li>
       }
-        
     }
   }
 

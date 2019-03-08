@@ -9,7 +9,7 @@ import Modal from 'react-modal';
 
 export default class App extends Component {
   constructor() {
-    super(); // SUPER IMPORTANT!  IF YOU LEAVE THIS OUT, STUFF BREAKS!
+    super(); 
 
     this.viewBase = this.viewBase.bind(this);
   }
@@ -64,12 +64,14 @@ export default class App extends Component {
 
     this.setState({bases: [], show_dash: false, province: st.selected_province});
     let start_base;
+    
     if (st.location !== null) {
       start_base = st.location.toUpperCase();
       if (st.location.length === 3) { start_base = "C" + start_base }
     } else {
       start_base = null;
     }
+    
     fetch(`api/getmetars/${st.selected_province}`)
     .then(res => res.json())
     .then(result => {
@@ -85,6 +87,7 @@ export default class App extends Component {
       console.log(results);
     })
     .catch(error => console.log(error));
+    
     fetch(`/api/gettaffs${st.selected_province}`)
     .then(res => res.json())
     .then(result => {

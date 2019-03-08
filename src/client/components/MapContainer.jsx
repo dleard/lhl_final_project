@@ -45,7 +45,7 @@ export class MapContainer extends Component {
 
   // VERY ugly ReactDOM function to get around bug in google-maps-react that nullifies onClick listeners inside InfoWindow
   onInfoWindowOpen(props, e) {
-    const button = (<button className = "btn btn-primary" onClick={e => {this.props.addToPlanner()}}><FontAwesomeIcon icon="plus-circle"></FontAwesomeIcon> Add to Planner</button>);
+    const button = (<button className = "btn btn-primary" onClick={e => {this.props.addToPlanner(this.state.activeMarker.station[0])}}><FontAwesomeIcon icon="plus-circle"></FontAwesomeIcon> Add to Planner</button>);
     ReactDOM.render(React.Children.only(button), document.getElementById("plannerButton"));
   }
 

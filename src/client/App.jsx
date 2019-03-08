@@ -8,11 +8,7 @@ import MapContainer from './components/MapContainer.jsx';
 import Modal from 'react-modal';
 
 export default class App extends Component {
-  constructor() {
-    super(); 
-
-    this.viewBase = this.viewBase.bind(this);
-  }
+  
   state = {
     username: null,
     isPaneOpenLeft: false,
@@ -24,9 +20,6 @@ export default class App extends Component {
     start_location: null
   };
 
-  viewBase(code) {
-
-  }
 
   componentDidMount() {
     Modal.setAppElement('body');
@@ -97,8 +90,8 @@ export default class App extends Component {
     .catch(error => console.log(error));
   }
 
-  infoWindowAddToPlanner = () => {
-    console.log('CLICKED ADD BUTTON IN INFO WINDOW');
+  infoWindowAddToPlanner = (base) => {
+    console.log(base);
   }
 
   render() {
@@ -116,7 +109,7 @@ export default class App extends Component {
                 <div><Planner addToPlanner={this.addToPlanner} bases={this.state.bases} three_hour_metars={this.state.three_hour_metars} taffs={this.state.taffs} /></div>
             </SlidingPane>
         <Dashboard show={this.state.show_dash} handleClose={this.hideDash} handleConfigSubmit={this.handleConfigSubmit}/>
-        <MapContainer viewBase={this.viewBase} metars={this.state.three_hour_metars} addToPlanner={this.infoWindowAddToPlanner}/>
+        <MapContainer metars={this.state.three_hour_metars} addToPlanner={this.infoWindowAddToPlanner}/>
       </div>
     );
   }

@@ -23,7 +23,8 @@ export default class App extends Component {
     bases: [],
     show_dash: false,
     province: null,
-    start_location: null
+    start_location: null,
+    notams: null
   };
 
   viewBase(code) {
@@ -47,6 +48,14 @@ export default class App extends Component {
       this.setState({taffs: results[0].TAF})
     })
     .catch(error => console.log(error));
+
+    fetch(`/api/getnotams`)
+    .then(res => res.json())
+    .then(result => {
+      const nresults = result;
+      this.setState({notams: nresults})
+    })
+    .catch(error => console.log(error));
   }
 
   addToPlanner = (bases) => {
@@ -67,10 +76,12 @@ export default class App extends Component {
     fetch(`api/getmetars/${st.selected_province}`)
     .then(res => res.json())
     .then(result => {
-      const results = result.response.data[0].METAR;
-      this.setState({three_hour_metars: results})
+      const mresults = result.response.data[0].METAR;
+      this.setState({three_hour_metars: mresults})
     })
     .catch(error => console.log(error));
+
+
   }
 
   render() {
@@ -89,7 +100,7 @@ export default class App extends Component {
                 <div><Planner addToPlanner={this.addToPlanner} bases={this.state.bases} three_hour_metars={this.state.three_hour_metars} taffs={this.state.taffs} /></div>
             </SlidingPane>
         <Dashboard show={this.state.show_dash} handleClose={this.hideDash} handleConfigSubmit={this.handleConfigSubmit}/>
-        <MapContainer viewBase={this.viewBase} metars={this.state.three_hour_metars} />
+        <MapContainer viewBase={this.viewBase} metars={this.state.three_hour_metars} notams={this.state.notams} />
       </div>
     );
   }

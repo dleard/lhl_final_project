@@ -36,5 +36,20 @@ app.get('/api/gettaffs', (req,res) => {
   })
 });
 
+app.get('/api/getnotams', (req,res) => {
+  axios.get(`https://v4p4sz5ijk.execute-api.us-east-1.amazonaws.com/anbdata/states/notams/notams-list?format=json&api_key=967a77e0-3ba2-11e9-9f72-ffb9ebffc640&states=CAN&type=airport  `)
+  .then(response => {
+    console.log(response.data);
+    console.log(typeof response.data);
+    
+    res.send(response.data);
+    // parseString(response, function (err, result) {
+    //   console.log('result:');
+    //   console.log(result);
+    //   //res.send(result)
+    // });        
+  })
+});
+
 
 app.listen(process.env.PORT || 8080, () => console.log(`Listening on port ${process.env.PORT || 8080}!`));

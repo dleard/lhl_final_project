@@ -97,6 +97,10 @@ export default class App extends Component {
     .catch(error => console.log(error));
   }
 
+  infoWindowAddToPlanner = () => {
+    console.log('CLICKED ADD BUTTON IN INFO WINDOW');
+  }
+
   render() {
     return (
       <div>
@@ -112,7 +116,7 @@ export default class App extends Component {
                 <div><Planner addToPlanner={this.addToPlanner} bases={this.state.bases} three_hour_metars={this.state.three_hour_metars} taffs={this.state.taffs} /></div>
             </SlidingPane>
         <Dashboard show={this.state.show_dash} handleClose={this.hideDash} handleConfigSubmit={this.handleConfigSubmit}/>
-        <MapContainer viewBase={this.viewBase} metars={this.state.three_hour_metars} />
+        <MapContainer viewBase={this.viewBase} metars={this.state.three_hour_metars} addToPlanner={this.infoWindowAddToPlanner}/>
       </div>
     );
   }

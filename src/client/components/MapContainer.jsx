@@ -42,6 +42,11 @@ export class MapContainer extends Component {
     }
   }
 
+  addToPlanner = () => {
+    
+    console.log("HERE")
+  }
+
   render() {
     let markers;
     if (this.props.metars != null) {
@@ -56,13 +61,14 @@ export class MapContainer extends Component {
           <InfoWindow
             marker = { this.state.activeMarker }
             visible = { this.state.showingInfoWindow }
-          ><div>
-            <ul className="list-group">
-            <li style={{textAlign: "center"}}className="list-group-item active">Metar</li>
-            {this.renderMetars()}
-          </ul>
-          <button className="btn btn-primary" onClick={() => console.log('hi')} type="button"><FontAwesomeIcon icon="plus-circle"></FontAwesomeIcon> Add to Planner</button>
-          </div>
+          >
+            <div>
+              <ul className="list-group">
+                <li style={{textAlign: "center"}} className="list-group-item active">Metar</li>
+                {this.renderMetars()}
+              </ul>
+              <button className="btn btn-primary" onClick={this.addToPlanner} type="button"><FontAwesomeIcon icon="plus-circle"></FontAwesomeIcon> Add to Planner</button>
+            </div>
           </InfoWindow>
           
         </Map>

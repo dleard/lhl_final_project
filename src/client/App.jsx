@@ -62,6 +62,13 @@ export default class App extends Component {
       console.log(results);
     })
     .catch(error => console.log(error));
+    fetch(`/api/gettaffs${st.selected_province}`)
+    .then(res => res.json())
+    .then(result => {
+      const results = result.response.data;
+      this.setState({taffs: results[0].TAF})
+    })
+    .catch(error => console.log(error));
   }
 
   render() {

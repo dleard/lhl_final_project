@@ -52,7 +52,8 @@ export default class App extends Component {
   };
 
   handleConfigSubmit = (st) => {
-    this.setState({show_dash: false, start_location: st.location, province: st.selected_province});
+
+    this.setState({bases: [], show_dash: false, start_location: st.location, province: st.selected_province});
     fetch(`api/getmetars/${st.selected_province}`)
     .then(res => res.json())
     .then(result => {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -42,9 +43,10 @@ export class MapContainer extends Component {
     }
   }
 
-  addToPlanner = () => {
-    
-    console.log("HERE")
+  // VERY ugly ReactDOM function to get around bug in google-maps-react that nullifies onClick listeners inside InfoWindow
+  onInfoWindowOpen(props, e) {
+    const button = (<button className = "btn btn-primary" onClick={e => {this.props.addToPlanner()}}><FontAwesomeIcon icon="plus-circle"></FontAwesomeIcon> Add to Planner</button>);
+    ReactDOM.render(React.Children.only(button), document.getElementById("plannerButton"));
   }
 
   render() {
@@ -61,16 +63,16 @@ export class MapContainer extends Component {
           <InfoWindow
             marker = { this.state.activeMarker }
             visible = { this.state.showingInfoWindow }
+            onOpen={(e) => this.onInfoWindowOpen(this.props, e)  }
           >
             <div>
               <ul className="list-group">
                 <li style={{textAlign: "center"}} className="list-group-item active">Metar</li>
                 {this.renderMetars()}
               </ul>
-              <button className="btn btn-primary" onClick={this.addToPlanner} type="button"><FontAwesomeIcon icon="plus-circle"></FontAwesomeIcon> Add to Planner</button>
+              <div id="plannerButton"></div>
             </div>
           </InfoWindow>
-          
         </Map>
       </div>
     );

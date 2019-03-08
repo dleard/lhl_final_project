@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import Planner from './components/Planner'
 import Dashboard from './components/Dashboard'
-import ReactImage from './react.png';
 import SlidingPane from 'react-sliding-pane';
 import 'react-sliding-pane/dist/react-sliding-pane.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import MapContainer from './components/MapContainer.jsx';
-import StyledMap from './components/StyledMap.jsx';
 import Modal from 'react-modal';
 
 export default class App extends Component {
@@ -63,18 +61,36 @@ export default class App extends Component {
   };
 
   handleConfigSubmit = (st) => {
-    this.setState({show_dash: false, start_location: st.location, province: st.selected_province});
+
+    this.setState({bases: [], show_dash: false, province: st.selected_province});
+    let start_base = st.location.toUpperCase();
+    if (st.location.length === 3) { start_base = "C" + start_base }
+    
     fetch(`api/getmetars/${st.selected_province}`)
     .then(res => res.json())
     .then(result => {
       const results = result.response.data[0].METAR;
+      results.forEach((metar) => {
+        if (start_base === metar.station_id[0]) { this.setState({start_location: start_base}) }
+      })
+      if (start_base !== this.state.start_location) { alert('Start location invalid') }
+      else {
+        this.setState({bases: [start_base]})
+      }
       this.setState({three_hour_metars: results})
+      console.log(results);
+    })
+    .catch(error => console.log(error));
+    fetch(`/api/gettaffs${st.selected_province}`)
+    .then(res => res.json())
+    .then(result => {
+      const results = result.response.data;
+      this.setState({taffs: results[0].TAF})
     })
     .catch(error => console.log(error));
   }
 
   render() {
-    if (this.state.three_hour_metars !== null) { console.log(this.state.three_hour_metars[0].longitude) }
     return (
       <div>
         <button id="open-planner" onClick={() => this.setState({ isPaneOpenLeft: true })}>Planner <FontAwesomeIcon icon="angle-double-right"></FontAwesomeIcon></button>

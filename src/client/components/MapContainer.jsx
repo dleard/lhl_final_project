@@ -27,7 +27,7 @@ export class MapContainer extends Component {
       showingInfoWindow: true
     });
   }
-
+  
   renderMetars = () => {
     const metars = [];
     
@@ -35,13 +35,10 @@ export class MapContainer extends Component {
       this.props.metars.forEach((metar) => {
         if (this.state.activeMarker.station[0] === metar.station_id[0]) { metars.push(metar)}
       })
-      const singleMetar = metars[0].raw_text[0];
-      return  <li key = {singleMetar} className="list-group-item">{singleMetar}</li>
-      // return metars.map((metar) => {
-      //   return (
-      //     <li key = {metar.raw_text[0]} className="list-group-item">{metar.raw_text[0]}</li>
-      //   )
-      // })
+      if (metars.length > 0) {
+        const singleMetar = metars[0].raw_text[0];
+        return  <li key = {singleMetar} className="list-group-item">{singleMetar}</li>
+      }
         
     }
   }

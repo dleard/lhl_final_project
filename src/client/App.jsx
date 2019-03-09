@@ -111,8 +111,6 @@ export default class App extends Component {
       }
       currentBases[dropResult.addedIndex] = movedBase
     }
-    console.log(dropResult);
-    console.log(currentBases);
     this.setState({bases: currentBases})
   }
 

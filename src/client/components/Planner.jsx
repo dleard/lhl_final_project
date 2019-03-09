@@ -45,7 +45,6 @@ export default class Planner extends Component {
     });
     if (found === 1) {
       const all_bases = this.props.bases.concat(newBase);
-      //this.setState({bases: all_bases});
       this.props.addToPlanner(all_bases);
     }
     else {

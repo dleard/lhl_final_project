@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Planner_Item from './Planner_Item';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Container, Draggable } from 'react-smooth-dnd';
 
 export default class Planner extends Component {
 
@@ -65,11 +66,16 @@ export default class Planner extends Component {
           </form>
         </div>
 
-        {this.props.bases.map((base) => {
-              return (
+        <Container 
+          onDrop={this.props.onDrop}>
+          {this.props.bases.map((base) => {
+            return (
+              <Draggable id = {base} key={base}>
                 <Planner_Item key = {base} metars={this.getMetars(base)} taff={this.getTaff(base)}/>
-              )
-            })}
+              </Draggable>
+            )
+          })}
+        </Container>    
       </div>
     );
   }

@@ -14,7 +14,7 @@ export default class App extends Component {
     isPaneOpenLeft: false,
     three_hour_metars: null,
     taffs: null,
-    bases: [],
+    bases: ['CYVR', 'CYYJ', 'CYQQ'],
     show_dash: false,
     province: null,
     start_location: null
@@ -96,6 +96,26 @@ export default class App extends Component {
     this.setState({bases: allBases});
   }
 
+  onDrop = (dropResult) => {
+    const currentBases = this.state.bases;
+    const movedBase = currentBases[dropResult.removedIndex]
+    if (dropResult.addedIndex > dropResult.removedIndex) {
+      for (let i = dropResult.removedIndex; i < dropResult.addedIndex; i++) {
+        currentBases[i] = currentBases[i+1];
+      }
+      currentBases[dropResult.addedIndex] = movedBase
+    }
+    else if (dropResult.addedIndex < dropResult.removedIndex) {
+      for (let i = dropResult.removedIndex; i > dropResult.addedIndex; i--) {
+        currentBases[i] = currentBases[i-1];
+      }
+      currentBases[dropResult.addedIndex] = movedBase
+    }
+    console.log(dropResult);
+    console.log(currentBases);
+    this.setState({bases: currentBases})
+  }
+
   render() {
     return (
       <div>
@@ -108,7 +128,15 @@ export default class App extends Component {
                 from='left'
                 width='50%'
                 onRequestClose={ () => this.setState({ isPaneOpenLeft: false }) }>
-                <div><Planner addToPlanner={this.addToPlanner} bases={this.state.bases} three_hour_metars={this.state.three_hour_metars} taffs={this.state.taffs} /></div>
+                <div>
+                  <Planner 
+                      addToPlanner={this.addToPlanner}
+                      bases={this.state.bases}
+                      three_hour_metars={this.state.three_hour_metars}
+                      taffs={this.state.taffs} 
+                      onDrop={this.onDrop}
+                      />
+                </div>
             </SlidingPane>
         <Dashboard show={this.state.show_dash} handleClose={this.hideDash} handleConfigSubmit={this.handleConfigSubmit}/>
         <MapContainer metars={this.state.three_hour_metars} addToPlanner={this.infoWindowAddToPlanner}/>

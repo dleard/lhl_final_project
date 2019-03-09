@@ -44,10 +44,10 @@ export class MapContainer extends Component {
       console.log('alert checks!');
       if (metars[0].temp_c && Number(metars[0].temp_c[0]) < 1 ) {
         
-        result.push(<li key ='temp' className="list-group-item">Sub-Zero Alert: Temperature expected to be freezing.</li>);
+        result.push(<li key ='temp' className="list-group-item"><h5>Sub-Zero Alert: Temperature expected to be freezing.</h5></li>);
       }
       if (metars[0].visibility_statute_mi && Number(metars[0].visibility_statute_mi[0]) < 0.5) {
-        result.push(<li key ='viz' className="list-group-item">Visibility Alert: Visibility below 1/2 statute mile.</li>);
+        result.push(<li key ='viz' className="list-group-item"><h5>Visibility Alert: Visibility below 1/2 statute mile.</h5></li>);
       }
       if (metars[0].wind_speed_kt && Number(metars[0].wind_speed_kt[0]) > 40) {
         result.push(<li key ='wind' className="list-group-item">Wind Alert: Wind speed above 40 knots.</li>);

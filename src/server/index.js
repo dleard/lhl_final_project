@@ -8,6 +8,15 @@ const axios = require('axios');
 app.use(express.static('dist'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.get('/api/getmetar', (req,res) => {
+  axios.get(`https://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=@BC&hoursBeforeNow=1`)
+  .then(response => {
+    parseString(response.data, function (err, result) {
+      res.send(result)
+    });        
+  })
+});
+
 app.get('/api/getmetars', (req,res) => {
   axios.get(`https://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=@BC&hoursBeforeNow=3`)
   .then(response => {

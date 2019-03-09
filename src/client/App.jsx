@@ -19,6 +19,7 @@ export default class App extends Component {
     username: null,
     isPaneOpenLeft: false,
     three_hour_metars: null,
+    single_meta: null,
     taffs: null,
     bases: [],
     show_dash: false,
@@ -38,6 +39,14 @@ export default class App extends Component {
     .then(result => {
       const results = result.response.data[0].METAR;
       this.setState({three_hour_metars: results})
+    })
+    .catch(error => console.log(error));
+
+    fetch("/api/getmetar")
+    .then(res => res.json())
+    .then(result => {
+      const results = result.response.data[0].METAR;
+      this.setState({single_metar: results})
     })
     .catch(error => console.log(error));
     
@@ -100,7 +109,7 @@ export default class App extends Component {
                 <div><Planner addToPlanner={this.addToPlanner} bases={this.state.bases} three_hour_metars={this.state.three_hour_metars} taffs={this.state.taffs} /></div>
             </SlidingPane>
         <Dashboard show={this.state.show_dash} handleClose={this.hideDash} handleConfigSubmit={this.handleConfigSubmit}/>
-        <MapContainer viewBase={this.viewBase} metars={this.state.three_hour_metars} notams={this.state.notams} />
+        <MapContainer viewBase={this.viewBase} metar={this.state.single_metar} metars={this.state.three_hour_metars} notams={this.state.notams} />
       </div>
     );
   }

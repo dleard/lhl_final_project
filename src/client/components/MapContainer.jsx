@@ -111,11 +111,24 @@ export class MapContainer extends Component {
   }
 
   render() {
-    let markers;
-    if (this.props.metars != null) {
-      markers = this.props.metars.map(marker => (
-        <Marker options={{icon: '/public/airport.png', label: `${marker.station_id}`}} onClick={this.onMarkerClick} key={uuidv4()} station={marker.station_id} position={{ lat: `${marker.latitude[0]}`, lng: `${marker.longitude[0]}` }} /> 
-      ));
+    let markers = [];
+    
+    if (this.props.metar != null) {
+      // markers = this.props.metars.map(marker => (
+      //   <Marker options={{icon: '/public/airport.png', label: `${marker.station_id}`}} onClick={this.onMarkerClick} key={uuidv4()} station={marker.station_id} position={{ lat: `${marker.latitude[0]}`, lng: `${marker.longitude[0]}` }} /> 
+      // ));
+      this.props.metar.forEach((metarentry) => {
+        let icon = '/public/airport.png';
+        if (Number(metarentry.temp_c) < 1) {
+          icon = '/public/bluecold.png'
+        }
+        if (Number(metarentry.visibility_statute_mi) < 0.5 || Number(metarentry.wind_speed_kt) > 40) {
+          icon = '/public/yellowalert.png'
+        }
+        let entry = <Marker options={{icon: `${icon}`, label: `${metarentry.station_id}`}} onClick={this.onMarkerClick} key={uuidv4()} station={metarentry.station_id} position={{ lat: `${metarentry.latitude[0]}`, lng: `${metarentry.longitude[0]}` }} />
+        markers.push(entry);
+
+      });
     }
     return (
       <div id='map-background' className="map-background map">

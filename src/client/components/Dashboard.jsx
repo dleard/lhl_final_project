@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { ETIME } from 'constants';
 
 export default class Dashboard extends Component {
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -102,12 +103,19 @@ export class MapContainer extends Component {
       // })
       result = notams.map(notam => (
         <li key = {notam} className="list-group-item">{notam}</li> 
-      ));
-      if (notams.length === 0){
-        return <li key ='none' style={{textAlign: "center"}} className="list-group-item">None</li>;    
+      
+      ))
+      if (result.length == 0){
+        return <li key ='none' style={{textAlign: "center"}} className="list-group-item">None.</li> 
       }
-      return result;    
+      return result
     }
+  }
+
+  // VERY ugly ReactDOM function to get around bug in google-maps-react that nullifies onClick listeners inside InfoWindow
+  onInfoWindowOpen(props, e) {
+    const button = (<button className = "btn btn-primary" onClick={e => {this.props.addToPlanner(this.state.activeMarker.station[0])}}><FontAwesomeIcon icon="plus-circle"></FontAwesomeIcon> Add to Planner</button>);
+    ReactDOM.render(React.Children.only(button), document.getElementById("plannerButton"));
   }
 
   render() {
@@ -137,7 +145,9 @@ export class MapContainer extends Component {
           <InfoWindow
             marker = { this.state.activeMarker }
             visible = { this.state.showingInfoWindow }
-          ><div>
+            onOpen={(e) => this.onInfoWindowOpen(this.props, e)  }
+          >
+          <div>
             <ul className="list-group">
             {this.renderAlerts()}
             <li style={{textAlign: "center"}}className="list-group-item active">METAR</li>
@@ -145,10 +155,9 @@ export class MapContainer extends Component {
             <li style={{textAlign: "center"}}className="list-group-item active">NOTAM</li>
             {this.renderNotams()}
           </ul>
-          <button className="btn btn-primary" onClick={() => console.log('hi')} type="button"><FontAwesomeIcon icon="plus-circle"></FontAwesomeIcon> Add to Planner</button>
+          <div id="plannerButton"></div>
           </div>
           </InfoWindow>
-          
         </Map>
       </div>
     );

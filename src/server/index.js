@@ -8,6 +8,15 @@ const axios = require('axios');
 app.use(express.static('dist'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.get('/api/getmetar', (req,res) => {
+  axios.get(`https://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=@BC&hoursBeforeNow=1`)
+  .then(response => {
+    parseString(response.data, function (err, result) {
+      res.send(result)
+    });        
+  })
+});
+
 app.get('/api/getmetars', (req,res) => {
   axios.get(`https://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=@BC&hoursBeforeNow=3`)
   .then(response => {
@@ -42,6 +51,21 @@ app.get('/api/gettaffs', (req,res) => {
   })
 });
 
+app.get('/api/getnotams', (req,res) => {
+  axios.get(`https://v4p4sz5ijk.execute-api.us-east-1.amazonaws.com/anbdata/states/notams/notams-list?format=json&api_key=967a77e0-3ba2-11e9-9f72-ffb9ebffc640&states=CAN&type=airport  `)
+  .then(response => {
+    console.log(response.data);
+    console.log(typeof response.data);
+    
+    res.send(response.data);
+    // parseString(response, function (err, result) {
+    //   console.log('result:');
+    //   console.log(result);
+    //   //res.send(result)
+    // });      
+  })
+})
+
 app.get('/api/gettaffs:province', (req,res) => {
   let prefix = "@";
   if (req.params.province === 'CA') {
@@ -51,6 +75,7 @@ app.get('/api/gettaffs:province', (req,res) => {
   .then(response => {
     parseString(response.data, function (err, result) {
       res.send(result)
+    
     });        
   })
 });

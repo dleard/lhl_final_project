@@ -13,11 +13,13 @@ export default class App extends Component {
     username: null,
     isPaneOpenLeft: false,
     three_hour_metars: null,
+    single_meta: null,
     taffs: null,
     bases: ['CYVR', 'CYYJ', 'CYQQ'],
     show_dash: false,
     province: null,
-    start_location: null
+    start_location: null,
+    notams: null
   };
 
 
@@ -30,12 +32,28 @@ export default class App extends Component {
       this.setState({three_hour_metars: results})
     })
     .catch(error => console.log(error));
+
+    fetch("/api/getmetar")
+    .then(res => res.json())
+    .then(result => {
+      const results = result.response.data[0].METAR;
+      this.setState({single_metar: results})
+    })
+    .catch(error => console.log(error));
     
     fetch("/api/gettaffs")
     .then(res => res.json())
     .then(result => {
       const results = result.response.data;
       this.setState({taffs: results[0].TAF})
+    })
+    .catch(error => console.log(error));
+
+    fetch(`/api/getnotams`)
+    .then(res => res.json())
+    .then(result => {
+      const nresults = result;
+      this.setState({notams: nresults})
     })
     .catch(error => console.log(error));
   }
@@ -88,6 +106,8 @@ export default class App extends Component {
       this.setState({taffs: results[0].TAF})
     })
     .catch(error => console.log(error));
+
+
   }
 
   infoWindowAddToPlanner = (base) => {
@@ -137,7 +157,7 @@ export default class App extends Component {
                 </div>
             </SlidingPane>
         <Dashboard show={this.state.show_dash} handleClose={this.hideDash} handleConfigSubmit={this.handleConfigSubmit}/>
-        <MapContainer metars={this.state.three_hour_metars} addToPlanner={this.infoWindowAddToPlanner}/>
+        <MapContainer viewBase={this.viewBase} metar={this.state.single_metar} metars={this.state.three_hour_metars} notams={this.state.notams} />
       </div>
     );
   }

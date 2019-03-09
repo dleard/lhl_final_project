@@ -98,6 +98,14 @@ export default class App extends Component {
       console.log(results);
     })
     .catch(error => console.log(error));
+
+    fetch(`/api/getmetar/${st.selected_province}`)
+    .then(res => res.json())
+    .then(result => {
+      const results = result.response.data[0].METAR;
+      this.setState({single_metar: results})
+    })
+    .catch(error => console.log(error));
     
     fetch(`/api/gettaffs${st.selected_province}`)
     .then(res => res.json())

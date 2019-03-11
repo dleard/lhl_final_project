@@ -20,7 +20,7 @@ export default class App extends Component {
     province: null,
     start_location: null,
     notams: null,
-    map_center: null
+    map_center: {lat: 49.127, long: -123.367}
   };
 
 
@@ -150,24 +150,30 @@ export default class App extends Component {
         <button id="open-planner" onClick={() => this.setState({ isPaneOpenLeft: true })}>Planner <FontAwesomeIcon icon="angle-double-right"></FontAwesomeIcon></button>
         <button id="open-settings" onClick={() => this.setState({ show_dash: true })}>SETTINGS</button>
         <SlidingPane
-                closeIcon={<div><FontAwesomeIcon icon="angle-double-left"></FontAwesomeIcon></div>}
-                isOpen={ this.state.isPaneOpenLeft }
-                title='Trip Planner' //can be own component
-                from='left'
-                width='50%'
-                onRequestClose={ () => this.setState({ isPaneOpenLeft: false }) }>
-                <div>
-                  <Planner 
-                      addToPlanner={this.addToPlanner}
-                      bases={this.state.bases}
-                      three_hour_metars={this.state.three_hour_metars}
-                      taffs={this.state.taffs} 
-                      onDrop={this.onDrop}
-                      />
-                </div>
-            </SlidingPane>
+          closeIcon={<div><FontAwesomeIcon icon="angle-double-left"></FontAwesomeIcon></div>}
+          isOpen={ this.state.isPaneOpenLeft }
+          title='Trip Planner' //can be own component
+          from='left'
+          width='50%'
+          onRequestClose={ () => this.setState({ isPaneOpenLeft: false }) }>
+          <div>
+            <Planner 
+              addToPlanner={this.addToPlanner}
+              bases={this.state.bases}
+              three_hour_metars={this.state.three_hour_metars}
+              taffs={this.state.taffs} 
+              onDrop={this.onDrop}
+              />
+          </div>
+        </SlidingPane>
         <Dashboard show={this.state.show_dash} handleClose={this.hideDash} handleConfigSubmit={this.handleConfigSubmit}/>
-        <MapContainer viewBase={this.viewBase} metar={this.state.single_metar} metars={this.state.three_hour_metars} notams={this.state.notams} addToPlanner={this.infoWindowAddToPlanner} />
+        <MapContainer 
+          metar={this.state.single_metar}
+          metars={this.state.three_hour_metars}
+          notams={this.state.notams} 
+          addToPlanner={this.infoWindowAddToPlanner}
+          map_center={this.state.map_center}
+          />
       </div>
     );
   }

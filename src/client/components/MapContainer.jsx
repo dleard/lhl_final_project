@@ -133,7 +133,11 @@ export class MapContainer extends Component {
     }
     return (
       <div id='map-background' className="map-background map">
-        <Map google={this.props.google} styles={styleObject} center={{ lat: 55.427, lng: -123.367 }} zoom={5}>
+        <Map
+          google={this.props.google}
+          styles={styleObject}
+          center={{ lat: this.props.map_center.lat, lng: this.props.map_center.long }}
+          zoom={5}>
           {markers}
           <InfoWindow
             marker = { this.state.activeMarker }

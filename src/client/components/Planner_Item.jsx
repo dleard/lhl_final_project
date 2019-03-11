@@ -16,9 +16,12 @@ export default class Planner_Item extends Component {
       const date = new Date(metar.observation_time[0])
       const localDate = date.toString().slice(15, 21)
       labels.push(localDate)
-      temps.push(metar.temp_c[0])
-      winds.push(metar.wind_speed_kt[0]);
-      viz.push(metar.visibility_statute_mi[0])
+      if (metar.temp_c !== undefined)
+        temps.push(metar.temp_c[0])
+      if (metar.wind_speed_kt !== undefined)
+        winds.push(metar.wind_speed_kt[0]);
+      if (metar.visibility_statute_mi !== undefined)
+        viz.push(metar.visibility_statute_mi[0])
     })
 
     /** THIS NEEDS REFACTORIING! */

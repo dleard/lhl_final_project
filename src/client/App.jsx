@@ -19,7 +19,8 @@ export default class App extends Component {
     show_dash: false,
     province: null,
     start_location: null,
-    notams: null
+    notams: null,
+    map_center: null
   };
 
 

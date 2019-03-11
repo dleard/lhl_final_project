@@ -174,7 +174,7 @@ export default class App extends Component {
     return (
       <div>
         <button id="open-planner" onClick={() => this.setState({ isPaneOpenLeft: true })}>Planner <FontAwesomeIcon icon="angle-double-right"></FontAwesomeIcon></button>
-        <button id="open-settings" onClick={() => this.setState({ show_dash: true })}>SETTINGS</button>
+        <button id="open-settings" onClick={() => this.setState({ show_dash: true })}><FontAwesomeIcon icon="cog"></FontAwesomeIcon> Config</button>
         <SlidingPane
           closeIcon={<div><FontAwesomeIcon icon="angle-double-left"></FontAwesomeIcon></div>}
           isOpen={ this.state.isPaneOpenLeft }

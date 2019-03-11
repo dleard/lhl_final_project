@@ -6,12 +6,13 @@ body {
   
   #open-planner {
     position: absolute;
-    top:20px;
+    top:10px;
+    left: 5px;
   }
 
   #open-settings {
     position: absolute;
-    top:7px;
+    top:10px;
     left: 100px;
   }
 
@@ -49,17 +50,6 @@ body {
 #root {
   margin-top: 5vh;
   height: 95vh;
-}
-
-#open-planner {
-  margin-bottom: 3rem;
-  position: relative;
-  top: 7px;
-}
-
-body #open-planner {
-  position: absolute;
-  top: 7px;
 }
 
 .navbar {

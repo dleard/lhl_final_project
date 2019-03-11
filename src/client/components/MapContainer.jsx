@@ -11,8 +11,6 @@ export class MapContainer extends Component {
   constructor(props) {
     super(props); 
 
-    
-
     this.state = {
       showingInfoWindow: false,
       activeMarker: {},
@@ -22,6 +20,7 @@ export class MapContainer extends Component {
     this.onMarkerClick = this.onMarkerClick.bind(this);
   }
 
+  // Marker click function, shows info window & sets this marker as active in state
   onMarkerClick = (props, marker, e) => {
     e.preventDefault;
     this.setState({
@@ -70,20 +69,12 @@ export class MapContainer extends Component {
       this.props.metars.forEach((metar) => {
         if (this.state.activeMarker.station[0] === metar.station_id[0]) { metars.push(metar)}
       })
-      // const singleMetar = metars[0].raw_text[0];
-      // return  <li key = {singleMetar} className="list-group-item">{singleMetar}</li>
 
       const metarshtml = metars.map(metar => (
         <li key = {metar.raw_text} className="list-group-item">{metar.raw_text}</li> 
       ));
 
       return metarshtml
-      // return metars.map((metar) => {
-      //   return (
-      //     <li key = {metar.raw_text[0]} className="list-group-item">{metar.raw_text[0]}</li>
-      //   )
-      // })
-        
     }
   }
 
@@ -108,6 +99,7 @@ export class MapContainer extends Component {
   }
 
   // VERY ugly ReactDOM function to get around bug in google-maps-react that nullifies onClick listeners inside InfoWindow
+  // Try not to use this again, using ReactDOM inside the app could cause some problems
   onInfoWindowOpen(props, e) {
     const button = (<button className = "btn btn-primary" onClick={e => this.props.addToPlanner(this.state.activeMarker.station[0])}><FontAwesomeIcon icon="plus-circle"></FontAwesomeIcon> Add to Planner</button>);
     ReactDOM.render(React.Children.only(button), document.getElementById("plannerButton"));

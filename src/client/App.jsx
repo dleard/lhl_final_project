@@ -8,13 +8,13 @@ import MapContainer from './components/MapContainer.jsx';
 import Modal from 'react-modal';
 
 const mapCenters = {
-  BC: {lat: 49.127, long: -123.367},
-  AB: {lat: 49.127, long: -116.367},
-  SK: {lat: 49.127, long: -106.367},
-  MB: {lat: 49.127, long: -98.367},
+  BC: {lat: 52.127, long: -123.367},
+  AB: {lat: 52.127, long: -116.367},
+  SK: {lat: 52.127, long: -106.367},
+  MB: {lat: 52.127, long: -98.367},
   ON: {lat: 49.127, long: -85.367},
   QC: {lat: 49.127, long: -73.367},
-  CA: {lat: 49.127, long: -98.367}
+  CA: {lat: 55.127, long: -98.367}
 }
 
 export default class App extends Component {
@@ -30,7 +30,8 @@ export default class App extends Component {
     province: null,
     start_location: null,
     notams: null,
-    map_center: mapCenters.BC
+    map_center: mapCenters.BC,
+    zoom: 5
   };
 
 
@@ -87,7 +88,8 @@ export default class App extends Component {
 
     this.setState({bases: [], show_dash: false, province: st.selected_province, map_center: mapCenters[st.selected_province]});
     let start_base;
-    
+    if (st.selected_province === 'CA') { this.setState({ zoom: 4 }) }
+    else { this.setState({ zoom: 5 }) }
     if (st.location !== null) {
       start_base = st.location.toUpperCase();
       if (st.location.length === 3) { start_base = "C" + start_base }
@@ -183,6 +185,7 @@ export default class App extends Component {
           notams={this.state.notams} 
           addToPlanner={this.infoWindowAddToPlanner}
           map_center={this.state.map_center}
+          zoom={this.state.zoom}
           />
       </div>
     );

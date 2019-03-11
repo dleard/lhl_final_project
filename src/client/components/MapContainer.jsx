@@ -137,7 +137,7 @@ export class MapContainer extends Component {
           google={this.props.google}
           styles={styleObject}
           center={{ lat: this.props.map_center.lat, lng: this.props.map_center.long }}
-          zoom={5}>
+          zoom={this.props.zoom}>
           {markers}
           <InfoWindow
             marker = { this.state.activeMarker }

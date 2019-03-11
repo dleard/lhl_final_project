@@ -34,9 +34,9 @@ export default class App extends Component {
     zoom: 5
   };
 
-
   componentDidMount() {
     Modal.setAppElement('body');
+    // Route to API to request three hours worth of metars for BC (default province)
     fetch("/api/getmetars")
     .then(res => res.json())
     .then(result => {
@@ -45,6 +45,7 @@ export default class App extends Component {
     })
     .catch(error => console.log(error));
 
+    // Route to API to request three hours worth of metars for BC (default province)
     fetch("/api/getmetar")
     .then(res => res.json())
     .then(result => {
@@ -53,6 +54,7 @@ export default class App extends Component {
     })
     .catch(error => console.log(error));
     
+    // Route to API to request TAFs for BC (default province)
     fetch("/api/gettaffs")
     .then(res => res.json())
     .then(result => {
@@ -61,6 +63,7 @@ export default class App extends Component {
     })
     .catch(error => console.log(error));
 
+    // Route to API to reqeust NOTAMs (all Canada)
     fetch(`/api/getnotams`)
     .then(res => res.json())
     .then(result => {
@@ -70,25 +73,31 @@ export default class App extends Component {
     .catch(error => console.log(error));
   }
 
+  // Adds a selected base (airport) to the trip planner (passed as props to Planner component)
   addToPlanner = (bases) => {
     this.setState({bases})
   }
 
+  // Shows Dashboard Modal
   showDash = () => {
     this.setState({ show_dash: true });
   };
 
+  // Hides Dashboard Modal (passed as props to Dashboard component)
   hideDash = (e) => {
     e.preventDefault();
     this.setState({ show_dash: false });
   };
 
+  // Handles input from Dashboard settings config as selected by user
   handleConfigSubmit = (st) => {
 
     this.setState({bases: [], show_dash: false, province: st.selected_province, map_center: mapCenters[st.selected_province]});
     let start_base;
+    // Change map zoom if all of Canada is selected
     if (st.selected_province === 'CA') { this.setState({ zoom: 4 }) }
     else { this.setState({ zoom: 5 }) }
+    // Set the start_base as selected by the user in dashboard config (start base is automatically added to planner if set)
     if (st.location !== null) {
       start_base = st.location.toUpperCase();
       if (st.location.length === 3) { start_base = "C" + start_base }
@@ -96,6 +105,7 @@ export default class App extends Component {
       start_base = null;
     }
     
+    // Route to get three hours worth of metars for the selected province
     fetch(`api/getmetars/${st.selected_province}`)
     .then(res => res.json())
     .then(result => {
@@ -111,6 +121,7 @@ export default class App extends Component {
     })
     .catch(error => console.log(error));
 
+    // Route to get one hour worth of metars for the selected province (used for populating markers / display in the map info window)
     fetch(`/api/getmetar/${st.selected_province}`)
     .then(res => res.json())
     .then(result => {
@@ -119,6 +130,7 @@ export default class App extends Component {
     })
     .catch(error => console.log(error));
     
+    // Route to get the TAFs for the selected province
     fetch(`/api/gettaffs${st.selected_province}`)
     .then(res => res.json())
     .then(result => {
@@ -130,21 +142,25 @@ export default class App extends Component {
 
   }
 
+  // Adds the base (airport) to the planner (sent as props to MapContainer component for use in the info window of a selected marker)
   infoWindowAddToPlanner = (base) => {
     const currentBases = this.state.bases;
     const allBases = [...currentBases, base]
     this.setState({bases: allBases});
   }
 
+  // Helper function for drag & drop functionality of the trip planner (sent as props to Planner.jsx)
   onDrop = (dropResult) => {
     const currentBases = this.state.bases;
     const movedBase = currentBases[dropResult.removedIndex]
+    // Move bases forward in state if dropped base was ahead of them
     if (dropResult.addedIndex > dropResult.removedIndex) {
       for (let i = dropResult.removedIndex; i < dropResult.addedIndex; i++) {
         currentBases[i] = currentBases[i+1];
       }
       currentBases[dropResult.addedIndex] = movedBase
     }
+    // Move all bases backward in state if dropped base was behind them
     else if (dropResult.addedIndex < dropResult.removedIndex) {
       for (let i = dropResult.removedIndex; i > dropResult.addedIndex; i--) {
         currentBases[i] = currentBases[i-1];

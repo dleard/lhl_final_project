@@ -107,7 +107,16 @@ export class MapContainer extends Component {
 
   render() {
     let markers = [];
-    
+    let stations = {};
+
+    if (this.props.metar != null) {
+      this.props.metars.forEach((metar) => {
+        if (!stations[metar.station_id]){
+          stations[metar.station_id] = metar;
+        }
+      })
+    }
+   
     if (this.props.metar != null) {
       
       this.props.metar.forEach((metarentry) => {

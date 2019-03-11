@@ -166,7 +166,7 @@ export default class App extends Component {
                 </div>
             </SlidingPane>
         <Dashboard show={this.state.show_dash} handleClose={this.hideDash} handleConfigSubmit={this.handleConfigSubmit}/>
-        <MapContainer viewBase={this.viewBase} metar={this.state.single_metar} metars={this.state.three_hour_metars} notams={this.state.notams} addToPlanner={this.addToPlanner} />
+        <MapContainer viewBase={this.viewBase} metar={this.state.single_metar} metars={this.state.three_hour_metars} notams={this.state.notams} addToPlanner={this.infoWindowAddToPlanner} />
       </div>
     );
   }

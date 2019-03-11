@@ -21,7 +21,7 @@ export default class Timer extends Component {
       
       return (
         <div style={{float: 'right'}}>
-            Last Metar Updated {minutes}m {seconds}s ago
+            {minutes}m {seconds}s Since Latest Metar
         </div>
       );
     

@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
+const Dotenv = require('dotenv-webpack');
 
 const outputDirectory = 'dist';
 
@@ -43,12 +44,19 @@ module.exports = {
     }
   },
   plugins: [
+    new Dotenv({
+      path: path.resolve(__dirname, './.env')
+    }),
+    new webpack.DefinePlugin({
+      'process.env.SUPERTEST': JSON.stringify('This is a test')
+    }),
     new CleanWebpackPlugin([outputDirectory]),
     new HtmlWebpackPlugin({
       template: './public/index.html',
       favicon: './public/favicon.ico'
     }),
     new webpack.HotModuleReplacementPlugin()
+    
   ],
   watchOptions: {
     aggregateTimeout: 300,

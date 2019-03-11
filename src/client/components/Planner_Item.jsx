@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactChartkick, { LineChart, PieChart } from 'react-chartkick'
 import Chart from 'chart.js'
+import Timer from './Timer'
 
 ReactChartkick.addAdapter(Chart)
 
@@ -103,6 +104,7 @@ export default class Planner_Item extends Component {
       <div className="card">
         <div className="card-header">
           {this.props.metars[0].station_id[0].slice(1)}
+          <Timer metar={this.props.metars[0]}/>
         </div>
         <div className="card-body">
           <ul id="metar-pane" className="list-group">

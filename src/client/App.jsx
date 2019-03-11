@@ -7,6 +7,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import MapContainer from './components/MapContainer.jsx';
 import Modal from 'react-modal';
 
+const mapCenters = {
+  BC: {lat: 49.127, long: -123.367},
+  AB: {lat: 49.127, long: -116.367},
+  SK: {lat: 49.127, long: -106.367},
+  MB: {lat: 49.127, long: -98.367},
+  ON: {lat: 49.127, long: -85.367},
+  QC: {lat: 49.127, long: -73.367},
+  CA: {lat: 49.127, long: -98.367}
+}
+
 export default class App extends Component {
   
   state = {
@@ -20,7 +30,7 @@ export default class App extends Component {
     province: null,
     start_location: null,
     notams: null,
-    map_center: {lat: 49.127, long: -123.367}
+    map_center: mapCenters.BC
   };
 
 
@@ -75,7 +85,7 @@ export default class App extends Component {
 
   handleConfigSubmit = (st) => {
 
-    this.setState({bases: [], show_dash: false, province: st.selected_province});
+    this.setState({bases: [], show_dash: false, province: st.selected_province, map_center: mapCenters[st.selected_province]});
     let start_base;
     
     if (st.location !== null) {

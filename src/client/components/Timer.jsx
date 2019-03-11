@@ -23,7 +23,6 @@ export default class Timer extends Component {
         <div style={{float:'right'}}>
             Metar Last Updated: &nbsp;<button className="btn btn-primary" >{minutes}m {seconds}s</button>
         </div>
-      );
-    
+      );    
   }
 }

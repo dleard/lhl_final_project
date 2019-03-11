@@ -7,7 +7,9 @@ export default class Dashboard extends Component {
     location: null
   }
 
+  // Tracks which province is selected inside the Dashboard config modal
   selectProvince = (e) => {
+    // Persist is necessary for react to recognize that it should be looking at the radio buttons, not the whole form
     e.persist();
     this.setState({selected_province: e.target.name}, () => {
       document.querySelectorAll("input:checked").forEach((node) => {
@@ -18,6 +20,7 @@ export default class Dashboard extends Component {
     });
   }
 
+  // Tracks the content of the start location text input (if valid this base will be automatically added to the trip planner)
   setStartLocation = (e) => {
     this.setState({location: event.target.value});
   }

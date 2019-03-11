@@ -15,7 +15,7 @@ export default class App extends Component {
     three_hour_metars: null,
     single_meta: null,
     taffs: null,
-    bases: ['CYVR', 'CYYJ', 'CYQQ'],
+    bases: [],
     show_dash: false,
     province: null,
     start_location: null,

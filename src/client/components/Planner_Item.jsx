@@ -6,7 +6,6 @@ ReactChartkick.addAdapter(Chart)
 
 export default class Planner_Item extends Component {
 
-
   componentDidMount = () => {
     // Populate values necessary to create graphs in item card
     const labels = []

@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-
 const uuidv4 = require('uuid/v4');
 const styleObject = require('../styleObject.json');
 
@@ -41,7 +40,6 @@ export class MapContainer extends Component {
       })
     }
     
-
     if (metars[0] !== undefined && this.props.metars !== null && this.state.activeMarker.station !== undefined){
       
       if (metars[0].temp_c && Number(metars[0].temp_c[0]) < 1 ) {

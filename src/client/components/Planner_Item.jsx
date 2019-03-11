@@ -103,8 +103,10 @@ export default class Planner_Item extends Component {
     return (
       <div className="card">
         <div className="card-header">
+          <div style={{overflow: 'auto'}}>
           {this.props.metars[0].station_id[0].slice(1)}
           <Timer metar={this.props.metars[0]}/>
+          </div>
         </div>
         <div className="card-body">
           <ul id="metar-pane" className="list-group">

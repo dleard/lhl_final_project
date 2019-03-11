@@ -20,8 +20,8 @@ export default class Timer extends Component {
     const seconds = Math.trunc(timeSinceMetar/1000) % 60;
       
       return (
-        <div style={{float: 'right'}}>
-            {minutes}m {seconds}s Since Latest Metar
+        <div style={{float:'right'}}>
+            Metar Last Updated: &nbsp;<button className="btn btn-primary" >{minutes}m {seconds}s</button>
         </div>
       );
     

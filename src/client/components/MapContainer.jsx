@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+
 const uuidv4 = require('uuid/v4');
 const styleObject = require('../styleObject.json');
 
@@ -152,5 +153,5 @@ export class MapContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: ('AIzaSyAGvUWB72E3Dszv0iI8pkFtbLj7BonXvTU')
+  apiKey: (process.env.GOOGLE_API)
 })(MapContainer)

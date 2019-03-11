@@ -55,7 +55,6 @@ export default class Planner extends Component {
   }
 
   render() {
-    console.log(typeof this.props.bases);
     return (
       <div id="planner">
 

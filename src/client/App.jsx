@@ -71,7 +71,6 @@ export default class App extends Component {
   }
 
   addToPlanner = (bases) => {
-    console.log('here')
     this.setState({bases})
   }
 
@@ -109,7 +108,6 @@ export default class App extends Component {
         this.setState({bases: [start_base]})
       }
       this.setState({three_hour_metars: results})
-      console.log(results);
     })
     .catch(error => console.log(error));
 

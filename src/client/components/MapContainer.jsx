@@ -41,10 +41,10 @@ export class MapContainer extends Component {
         if (this.state.activeMarker.station[0] === metar.station_id[0]) { metars.push(metar)}
       })
     }
-    console.log(metars[0]);
+    
 
     if (metars[0] !== undefined && this.props.metars !== null && this.state.activeMarker.station !== undefined){
-      console.log('alert checks!');
+      
       if (metars[0].temp_c && Number(metars[0].temp_c[0]) < 1 ) {
         
         result.push(<li key ='temp' className="list-group-item"><h5>Sub-Zero Alert: Temperature expected to be freezing.</h5></li>);
@@ -91,18 +91,11 @@ export class MapContainer extends Component {
     const notams = [];
 
     let result;
-    console.log(result);
-    console.log('notams!');
-    console.log(this.props.notams);
     if (this.props.notams !== null && this.state.activeMarker.station !== undefined) {
       this.props.notams.forEach((notam) => {
         if (this.state.activeMarker.station[0] === notam.location) { notams.push(notam.all)}
       })
-      //   const notamResult = metars[0].raw_text[0];
-      console.log(notams);
-      // notams.forEach((notam) => {
-      //   return  <li key = {notam} className="list-group-item">{notam}</li>
-      // })
+      
       result = notams.map(notam => (
         <li key = {notam} className="list-group-item">{notam}</li> 
       
@@ -116,7 +109,7 @@ export class MapContainer extends Component {
 
   // VERY ugly ReactDOM function to get around bug in google-maps-react that nullifies onClick listeners inside InfoWindow
   onInfoWindowOpen(props, e) {
-    const button = (<button className = "btn btn-primary" onClick={e => {this.props.addToPlanner(this.state.activeMarker.station[0])}}><FontAwesomeIcon icon="plus-circle"></FontAwesomeIcon> Add to Planner</button>);
+    const button = (<button className = "btn btn-primary" onClick={e => this.props.addToPlanner(this.state.activeMarker.station[0])}><FontAwesomeIcon icon="plus-circle"></FontAwesomeIcon> Add to Planner</button>);
     ReactDOM.render(React.Children.only(button), document.getElementById("plannerButton"));
   }
 
@@ -124,9 +117,7 @@ export class MapContainer extends Component {
     let markers = [];
     
     if (this.props.metar != null) {
-      // markers = this.props.metars.map(marker => (
-      //   <Marker options={{icon: '/public/airport.png', label: `${marker.station_id}`}} onClick={this.onMarkerClick} key={uuidv4()} station={marker.station_id} position={{ lat: `${marker.latitude[0]}`, lng: `${marker.longitude[0]}` }} /> 
-      // ));
+      
       this.props.metar.forEach((metarentry) => {
         let icon = '/public/airport.png';
         if (Number(metarentry.temp_c) < 1) {

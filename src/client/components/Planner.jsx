@@ -55,6 +55,7 @@ export default class Planner extends Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <div id="planner">
 

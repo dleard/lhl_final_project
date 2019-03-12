@@ -1,45 +1,5 @@
-import React from "react";
-import {GoogleMaps} from "react-google-maps";
-// import InfoBox from "react-google-maps/addons/InfoBox"
-
-class StyledMap extends React.Component {
-
-  render () {
-    const {props, state} = this,
-          {googleMapsApi, mapStyles, ...otherProps} = props;
-    const myLatLng = new google.maps.LatLng(55.427, -123.367);
-
-    const InfoBoxContent = `
-      <div style="background-color:yellow; opacity:0.75;">
-        <div style="font-size: 16px; font-color:#08233B">
-          Taipei
-        </div>
-      </div>
-    `;
-    return (
-      <GoogleMaps containerProps={{
-          ...otherProps,
-          style: {
-            height: "100%",
-          },
-        }}
-        styles={mapStyles}
-        googleMapsApi={google.maps}
-        zoom={5}
-        center={myLatLng}>
-        <InfoBox
-          closeBoxURL=""
-          position={myLatLng}
-          content={InfoBoxContent}/>
-      </GoogleMaps>
-    );
-  }
-
-}
-
-StyledMap.defaultProps = {
-  
-  mapStyles: [{
+[
+  {
     "elementType": "geometry",
     "stylers": [
       {
@@ -81,6 +41,21 @@ StyledMap.defaultProps = {
     ]
   },
   {
+    "featureType": "administrative.country",
+    "elementType": "geometry.stroke",
+    "stylers": [
+      {
+        "color": "#4b6878"
+      },
+      {
+        "visibility": "on"
+      },
+      {
+        "weight": 2.5
+      }
+    ]
+  },
+  {
     "featureType": "administrative.land_parcel",
     "stylers": [
       {
@@ -111,6 +86,12 @@ StyledMap.defaultProps = {
     "stylers": [
       {
         "color": "#4b6878"
+      },
+      {
+        "visibility": "on"
+      },
+      {
+        "weight": 2.5
       }
     ]
   },
@@ -343,7 +324,5 @@ StyledMap.defaultProps = {
         "color": "#4e6d70"
       }
     ]
-  }]
-}
-
-export default StyledMap;
+  }
+]

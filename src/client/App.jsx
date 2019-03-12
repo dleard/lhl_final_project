@@ -28,7 +28,7 @@ export default class App extends Component {
     taffs: null,
     bases: ['CYYJ'],
     show_dash: false,
-    province: null,
+    province: 'BC',
     start_location: null,
     notams: null,
     map_center: mapCenters.BC,
@@ -175,8 +175,23 @@ export default class App extends Component {
     this.setState({bases: filteredBases});
   }
 
+  // Refresh items in Planner by re-requesting data from API and updating state (sent as props to Planner_Title.jsx)
   refreshPlannerItems = () => {
-    console.log(this.state.three_hour_metars);
+    fetch(`api/getmetars/${this.state.province}`)
+    .then(res => res.json())
+    .then(result => {
+      const results = result.response.data[0].METAR;
+      this.setState({three_hour_metars: results})
+    })
+    .catch(error => console.log(error));
+
+    fetch(`/api/gettaffs${this.state.province}`)
+    .then(res => res.json())
+    .then(result => {
+      const results = result.response.data;
+      this.setState({taffs: results[0].TAF})
+    })
+    .catch(error => console.log(error));
   }
 
   render() {

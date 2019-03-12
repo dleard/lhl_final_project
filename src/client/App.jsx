@@ -9,6 +9,7 @@ import MapContainer from './components/MapContainer.jsx';
 import Modal from 'react-modal';
 import { faCog } from '@fortawesome/free-solid-svg-icons'
 
+// provincial/national map origin data
 const mapCenters = {
   BC: {lat: 54.127, long: -123.367},
   AB: {lat: 54.127, long: -116.367},

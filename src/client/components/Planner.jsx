@@ -44,7 +44,7 @@ export default class Planner extends Component {
     let found = 0;
     if (newBase.length === 3) { newBase = 'C' + newBase }
     this.props.three_hour_metars.forEach((metar) => {
-      if (metar.station_id[0] === newBase) {
+      if (metar.station_id[0] === newBase && !this.props.bases.includes(newBase)) {
         found = 1;
       }
     });
@@ -54,7 +54,7 @@ export default class Planner extends Component {
     }
     // Alert user to invalid base and do not change bases in state
     else {
-      alert(`${newBase} is an invalid airport code`)
+      alert(`${newBase} already exists or is invalid`)
     }
     this.setState({value: ''});
     

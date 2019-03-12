@@ -17,17 +17,21 @@ body {
 
   .card-header {
     padding: 1rem;
-    background: #ebebeb;  
+    background: #ebebeb;
+    margin-bottom: 0.5rem;  
   }
 
   .card {
     border-style: solid;
     padding: 1rem;
+    margin-top: 1rem;
+    background-color: #fff;
 
     #metar-pane {
       display: inline-block;
       vertical-align: top;
       width: 45%;
+      margin-left: 0.5rem;
     }
   }
 }
@@ -132,13 +136,13 @@ body #open-planner {
 .dashboard-main {
   position:absolute;
   background: white;
-  width: 80%;
-  height: auto;
+  width: 100%;
+  height: 100%;
   padding: 20px;
   
-  margin-left: 10%;
-  margin-right: 10%;
-  margin-top: 5%;
+  // margin-left: 10%;
+  // margin-right: 10%;
+  // margin-top: 5%;
   
   z-index: 2;
 }

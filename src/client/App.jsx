@@ -6,6 +6,7 @@ import 'react-sliding-pane/dist/react-sliding-pane.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import MapContainer from './components/MapContainer.jsx';
 import Modal from 'react-modal';
+import { faCog } from '@fortawesome/free-solid-svg-icons'
 
 const mapCenters = {
   BC: {lat: 54.127, long: -123.367},
@@ -96,7 +97,7 @@ export default class App extends Component {
     let start_base;
     // Change map zoom if all of Canada is selected
     if (st.selected_province === 'CA') { this.setState({ zoom: 4 }) }
-    else { this.setState({ zoom: 5 }) }
+    else { this.setState({ zoom: 6 }) }
     // Set the start_base as selected by the user in dashboard config (start base is automatically added to planner if set)
     if (st.location !== null) {
       start_base = st.location.toUpperCase();
@@ -173,8 +174,8 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <button id="open-planner" onClick={() => this.setState({ isPaneOpenLeft: true })}>Planner <FontAwesomeIcon icon="angle-double-right"></FontAwesomeIcon></button>
-        <button id="open-settings" onClick={() => this.setState({ show_dash: true })}>SETTINGS</button>
+        <button id="open-planner" className='btn btn-secondary' onClick={() => this.setState({ isPaneOpenLeft: true })}>Planner <FontAwesomeIcon icon="angle-double-right"></FontAwesomeIcon></button>
+        <button id="open-settings" className='btn btn-secondary' onClick={() => this.setState({ show_dash: true })}><FontAwesomeIcon icon={faCog}></FontAwesomeIcon></button>
         <SlidingPane
           closeIcon={<div><FontAwesomeIcon icon="angle-double-left"></FontAwesomeIcon></div>}
           isOpen={ this.state.isPaneOpenLeft }

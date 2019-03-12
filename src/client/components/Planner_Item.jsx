@@ -107,7 +107,7 @@ export default class Planner_Item extends Component {
         </div>
         <div className="card-body">
           <ul id="metar-pane" className="list-group">
-            <li className="list-group-item active">Raw Metars</li>
+            <li className="list-group-item active">METARs</li>
             {this.props.metars.map((metar) => {
               return (
                 <li key = {metar.raw_text[0]} className="list-group-item">{metar.raw_text[0]}</li>
@@ -146,7 +146,7 @@ export default class Planner_Item extends Component {
           <table className="table table-bordered">
             <thead style={{background: "#ebebeb"}}>
               <tr>
-                <th>TAFF</th>
+                <th>TAF</th>
               </tr>
             </thead>
             <tbody>

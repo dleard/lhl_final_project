@@ -29,7 +29,7 @@ export class MapContainer extends Component {
       showingInfoWindow: true
     });
   }
-
+  // Function to render alerts which are also represented by icon changes
   renderAlerts = () => {
     const result = [];
     const metars = [];
@@ -47,8 +47,8 @@ export class MapContainer extends Component {
         
         result.push(<li key ='temp' className="list-group-item"><h5>Sub-Zero Alert: Temperature expected to be freezing.</h5></li>);
       }
-      if (metars[0].visibility_statute_mi && Number(metars[0].visibility_statute_mi[0]) < 0.5) {
-        result.push(<li key ='viz' className="list-group-item"><h5>Visibility Alert: Visibility below 1/2 statute mile.</h5></li>);
+      if (metars[0].visibility_statute_mi && Number(metars[0].visibility_statute_mi[0]) < 0.75) {
+        result.push(<li key ='viz' className="list-group-item"><h5>Visibility Alert: Visibility below 3/4 statute mile.</h5></li>);
       }
       if (metars[0].wind_speed_kt && Number(metars[0].wind_speed_kt[0]) > 40) {
         result.push(<li key ='wind' className="list-group-item">Wind Alert: Wind speed above 40 knots.</li>);
@@ -60,7 +60,7 @@ export class MapContainer extends Component {
     }
     return result;
   }
-
+  // Function for rendering metar data within the info window on the map
   renderMetars = () => {
     const metars = [];
     
@@ -76,7 +76,7 @@ export class MapContainer extends Component {
       return metarshtml
     }
   }
-
+  // Function for rendering notam data within the info window on the map
   renderNotams = () => {
     const notams = [];
 
@@ -105,6 +105,7 @@ export class MapContainer extends Component {
   }
 
   render() {
+    // Logic for dynamic marker generation and icon assignment
     let markers = [];
     let stations = {};
 
@@ -121,27 +122,13 @@ export class MapContainer extends Component {
       if (Number(stations[station].temp_c) < 1) {
         icon = '/public/bluecold.png'
       }
-      if (Number(stations[station].visibility_statute_mi) < 0.5 || Number(stations[station].wind_speed_kt) > 40) {
+      if (Number(stations[station].visibility_statute_mi) < 0.75 || Number(stations[station].wind_speed_kt) > 40) {
         icon = '/public/yellowalert.png'
       }
       let entry = <Marker options={{icon: `${icon}`, label: `${stations[station].station_id}`}} onClick={this.onMarkerClick} key={uuidv4()} station={stations[station].station_id} position={{ lat: `${stations[station].latitude[0]}`, lng: `${stations[station].longitude[0]}` }} />
       markers.push(entry);
     }
-    // if (this.props.metar != null) {
-      
-    //   this.props.metar.forEach((metarentry) => {
-    //     let icon = '/public/airport.png';
-    //     if (Number(metarentry.temp_c) < 1) {
-    //       icon = '/public/bluecold.png'
-    //     }
-    //     if (Number(metarentry.visibility_statute_mi) < 0.5 || Number(metarentry.wind_speed_kt) > 40) {
-    //       icon = '/public/yellowalert.png'
-    //     }
-    //     let entry = <Marker options={{icon: `${icon}`, label: `${metarentry.station_id}`}} onClick={this.onMarkerClick} key={uuidv4()} station={metarentry.station_id} position={{ lat: `${metarentry.latitude[0]}`, lng: `${metarentry.longitude[0]}` }} />
-    //     markers.push(entry);
 
-    //   });
-    // }
     return (
       <div id='map-background' className="map-background map">
         <Map

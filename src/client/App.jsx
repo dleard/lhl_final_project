@@ -8,10 +8,10 @@ import MapContainer from './components/MapContainer.jsx';
 import Modal from 'react-modal';
 
 const mapCenters = {
-  BC: {lat: 52.127, long: -123.367},
-  AB: {lat: 52.127, long: -116.367},
-  SK: {lat: 52.127, long: -106.367},
-  MB: {lat: 52.127, long: -98.367},
+  BC: {lat: 54.127, long: -123.367},
+  AB: {lat: 54.127, long: -116.367},
+  SK: {lat: 54.127, long: -106.367},
+  MB: {lat: 54.127, long: -98.367},
   ON: {lat: 49.127, long: -85.367},
   QC: {lat: 49.127, long: -73.367},
   CA: {lat: 55.127, long: -98.367}
@@ -31,7 +31,7 @@ export default class App extends Component {
     start_location: null,
     notams: null,
     map_center: mapCenters.BC,
-    zoom: 5
+    zoom: 6
   };
 
   componentDidMount() {

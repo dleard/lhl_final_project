@@ -26,7 +26,11 @@ export default class App extends Component {
     three_hour_metars: null,
     single_meta: null,
     taffs: null,
+<<<<<<< HEAD
     bases: ['CYYJ'],
+=======
+    bases: ['CYYJ', 'CYVR', 'CYQQ'],
+>>>>>>> planner_item_styling
     show_dash: false,
     province: 'BC',
     start_location: null,

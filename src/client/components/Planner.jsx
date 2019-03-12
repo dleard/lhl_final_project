@@ -63,7 +63,6 @@ export default class Planner extends Component {
   render() {
     return (
       <div id="planner">
-
         <div className="search-container">
           <form id="base-search" onSubmit={this.handleSubmit}>
             <input type="text" placeholder="CYYJ" value={this.state.value} onChange={this.handleChange} />

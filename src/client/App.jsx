@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Planner from './components/Planner'
 import Dashboard from './components/Dashboard'
+import Planner_Title from './components/Planner_Title'
 import SlidingPane from 'react-sliding-pane';
 import 'react-sliding-pane/dist/react-sliding-pane.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -182,7 +183,7 @@ export default class App extends Component {
         <SlidingPane
           closeIcon={<div><FontAwesomeIcon icon="angle-double-left"></FontAwesomeIcon></div>}
           isOpen={ this.state.isPaneOpenLeft }
-          title='Trip Planner' //can be own component
+          title={<Planner_Title />}
           from='left'
           width='50%'
           onRequestClose={ () => this.setState({ isPaneOpenLeft: false }) }>

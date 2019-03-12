@@ -6,7 +6,7 @@ const Dotenv = require('dotenv-webpack');
 
 const outputDirectory = 'dist';
 
-module.exports = {
+module.exports(env) = {
   entry: ['babel-polyfill', './src/client/index.jsx'],
   output: {
     path: path.join(__dirname, outputDirectory),
@@ -49,7 +49,9 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env.SUPERTEST': JSON.stringify('This is a test')
+      
     }),
+    new webpack.DefinePlugin({ 'process.env.API_URL': JSON.stringify(env.GOOGLE_API) }),
     new CleanWebpackPlugin([outputDirectory]),
     new HtmlWebpackPlugin({
       template: './public/index.html',

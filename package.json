@@ -7,7 +7,7 @@
   },
   "main": "src/server/index.js",
   "scripts": {
-    "build": "webpack --mode production",
+    "build": "webpack --env.GOOGLE_API=AIzaSyAGvUWB72E3Dszv0iI8pkFtbLj7BonXvTU --mode production",
     "start": "node src/server/index.js",
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot --host 0.0.0.0",
     "server": "nodemon -L src/server/index.js",

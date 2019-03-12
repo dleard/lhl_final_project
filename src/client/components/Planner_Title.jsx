@@ -7,7 +7,7 @@ export default class Planner_Title extends Component {
       return (
         <div>
             Planner
-            <button style={{float:'right'}} onClick={() => {console.log('clicked') }}className="btn btn-primary"><FontAwesomeIcon icon="redo"></FontAwesomeIcon> Refresh</button>
+            <button style={{float:'right'}} onClick={this.props.refresh} className="btn btn-primary"><FontAwesomeIcon icon="redo"></FontAwesomeIcon> Refresh</button>
         </div>
       );    
   }

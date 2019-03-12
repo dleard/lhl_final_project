@@ -175,6 +175,10 @@ export default class App extends Component {
     this.setState({bases: filteredBases});
   }
 
+  refreshPlannerItems = () => {
+    console.log(this.state.three_hour_metars);
+  }
+
   render() {
     return (
       <div>
@@ -183,7 +187,7 @@ export default class App extends Component {
         <SlidingPane
           closeIcon={<div><FontAwesomeIcon icon="angle-double-left"></FontAwesomeIcon></div>}
           isOpen={ this.state.isPaneOpenLeft }
-          title={<Planner_Title />}
+          title={<Planner_Title refresh={this.refreshPlannerItems}/>}
           from='left'
           width='50%'
           onRequestClose={ () => this.setState({ isPaneOpenLeft: false }) }>

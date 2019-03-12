@@ -106,22 +106,42 @@ export class MapContainer extends Component {
 
   render() {
     let markers = [];
-    
-    if (this.props.metar != null) {
-      
-      this.props.metar.forEach((metarentry) => {
-        let icon = '/public/airport.png';
-        if (Number(metarentry.temp_c) < 1) {
-          icon = '/public/bluecold.png'
-        }
-        if (Number(metarentry.visibility_statute_mi) < 0.5 || Number(metarentry.wind_speed_kt) > 40) {
-          icon = '/public/yellowalert.png'
-        }
-        let entry = <Marker options={{icon: `${icon}`, label: `${metarentry.station_id}`}} onClick={this.onMarkerClick} key={uuidv4()} station={metarentry.station_id} position={{ lat: `${metarentry.latitude[0]}`, lng: `${metarentry.longitude[0]}` }} />
-        markers.push(entry);
+    let stations = {};
 
-      });
+    if (this.props.metars != null) {
+      this.props.metars.forEach((metar) => {
+        if (!stations[metar.station_id]){
+          stations[metar.station_id] = metar;
+        }
+      })
     }
+
+    for (let station in stations){
+      let icon = '/public/airport.png';
+      if (Number(stations[station].temp_c) < 1) {
+        icon = '/public/bluecold.png'
+      }
+      if (Number(stations[station].visibility_statute_mi) < 0.5 || Number(stations[station].wind_speed_kt) > 40) {
+        icon = '/public/yellowalert.png'
+      }
+      let entry = <Marker options={{icon: `${icon}`, label: `${stations[station].station_id}`}} onClick={this.onMarkerClick} key={uuidv4()} station={stations[station].station_id} position={{ lat: `${stations[station].latitude[0]}`, lng: `${stations[station].longitude[0]}` }} />
+      markers.push(entry);
+    }
+    // if (this.props.metar != null) {
+      
+    //   this.props.metar.forEach((metarentry) => {
+    //     let icon = '/public/airport.png';
+    //     if (Number(metarentry.temp_c) < 1) {
+    //       icon = '/public/bluecold.png'
+    //     }
+    //     if (Number(metarentry.visibility_statute_mi) < 0.5 || Number(metarentry.wind_speed_kt) > 40) {
+    //       icon = '/public/yellowalert.png'
+    //     }
+    //     let entry = <Marker options={{icon: `${icon}`, label: `${metarentry.station_id}`}} onClick={this.onMarkerClick} key={uuidv4()} station={metarentry.station_id} position={{ lat: `${metarentry.latitude[0]}`, lng: `${metarentry.longitude[0]}` }} />
+    //     markers.push(entry);
+
+    //   });
+    // }
     return (
       <div id='map-background' className="map-background map">
         <Map

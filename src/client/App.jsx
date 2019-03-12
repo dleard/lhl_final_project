@@ -7,12 +7,13 @@ import 'react-sliding-pane/dist/react-sliding-pane.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import MapContainer from './components/MapContainer.jsx';
 import Modal from 'react-modal';
+import { faCog } from '@fortawesome/free-solid-svg-icons'
 
 const mapCenters = {
-  BC: {lat: 52.127, long: -123.367},
-  AB: {lat: 52.127, long: -116.367},
-  SK: {lat: 52.127, long: -106.367},
-  MB: {lat: 52.127, long: -98.367},
+  BC: {lat: 54.127, long: -123.367},
+  AB: {lat: 54.127, long: -116.367},
+  SK: {lat: 54.127, long: -106.367},
+  MB: {lat: 54.127, long: -98.367},
   ON: {lat: 49.127, long: -85.367},
   QC: {lat: 49.127, long: -73.367},
   CA: {lat: 55.127, long: -98.367}
@@ -32,7 +33,7 @@ export default class App extends Component {
     start_location: null,
     notams: null,
     map_center: mapCenters.BC,
-    zoom: 5
+    zoom: 6
   };
 
   componentDidMount() {
@@ -97,7 +98,7 @@ export default class App extends Component {
     let start_base;
     // Change map zoom if all of Canada is selected
     if (st.selected_province === 'CA') { this.setState({ zoom: 4 }) }
-    else { this.setState({ zoom: 5 }) }
+    else { this.setState({ zoom: 6 }) }
     // Set the start_base as selected by the user in dashboard config (start base is automatically added to planner if set)
     if (st.location !== null) {
       start_base = st.location.toUpperCase();
@@ -197,8 +198,8 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <button id="open-planner" onClick={() => this.setState({ isPaneOpenLeft: true })}>Planner <FontAwesomeIcon icon="angle-double-right"></FontAwesomeIcon></button>
-        <button id="open-settings" onClick={() => this.setState({ show_dash: true })}><FontAwesomeIcon icon="cog"></FontAwesomeIcon> Config</button>
+        <button id="open-planner" className='btn btn-secondary' onClick={() => this.setState({ isPaneOpenLeft: true })}>Planner <FontAwesomeIcon icon="angle-double-right"></FontAwesomeIcon></button>
+        <button id="open-settings" className='btn btn-secondary' onClick={() => this.setState({ show_dash: true })}><FontAwesomeIcon icon="cog"></FontAwesomeIcon> Config</button>
         <SlidingPane
           closeIcon={<div><FontAwesomeIcon icon="angle-double-left"></FontAwesomeIcon></div>}
           isOpen={ this.state.isPaneOpenLeft }

@@ -49,7 +49,6 @@ module.exports(env) = {
     }),
     new webpack.DefinePlugin({
       'process.env.SUPERTEST': JSON.stringify('This is a test')
-      
     }),
     new CleanWebpackPlugin([outputDirectory]),
     new HtmlWebpackPlugin({

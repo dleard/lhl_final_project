@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
+import dotenv from 'dotenv';
+dotenv.config();
 
 const uuidv4 = require('uuid/v4');
 const styleObject = require('../styleObject.json');

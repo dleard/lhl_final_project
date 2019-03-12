@@ -100,6 +100,7 @@ export default class Planner_Item extends Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <div className="card">
         <div className="card-header">
@@ -160,6 +161,7 @@ export default class Planner_Item extends Component {
           </table>
           
         </div>
+        <button className="btn btn-danger" onClick={() => this.props.removePlannerItem(this.props.metars[0].station_id[0])}>Remove</button>
       </div>
     );
   }

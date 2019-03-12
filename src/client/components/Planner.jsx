@@ -76,7 +76,7 @@ export default class Planner extends Component {
           {this.props.bases.map((base) => {
             return (
               <Draggable id = {base} key={base}>
-                <Planner_Item key = {base} metars={this.getMetars(base)} taff={this.getTaff(base)}/>
+                <Planner_Item key = {base} metars={this.getMetars(base)} taff={this.getTaff(base)} removePlannerItem={this.props.removePlannerItem}/>
               </Draggable>
             )
           })}

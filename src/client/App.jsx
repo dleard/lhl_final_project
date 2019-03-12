@@ -25,7 +25,7 @@ export default class App extends Component {
     three_hour_metars: null,
     single_meta: null,
     taffs: null,
-    bases: [],
+    bases: ['CYYJ'],
     show_dash: false,
     province: null,
     start_location: null,
@@ -170,6 +170,12 @@ export default class App extends Component {
     this.setState({bases: currentBases})
   }
 
+  removePlannerItem = (base) => {
+    const currentBases = this.state.bases;
+    const filteredBases = currentBases.filter((curBase => curBase !== base));
+    this.setState({bases: filteredBases});
+  }
+
   render() {
     return (
       <div>
@@ -189,6 +195,7 @@ export default class App extends Component {
               three_hour_metars={this.state.three_hour_metars}
               taffs={this.state.taffs} 
               onDrop={this.onDrop}
+              removePlannerItem={this.removePlannerItem}
               />
           </div>
         </SlidingPane>

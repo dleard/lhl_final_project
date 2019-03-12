@@ -24,7 +24,7 @@ export default class App extends Component {
     username: null,
     isPaneOpenLeft: false,
     three_hour_metars: null,
-    single_meta: null,
+    single_metar: null,
     taffs: null,
     bases: ['CYYJ', 'CYVR', 'CYQQ'],
     show_dash: false,

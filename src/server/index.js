@@ -44,15 +44,20 @@ app.get(`/api/getmetars/:province`, (req, res) => {
   let numMetars = "3";
   if (req.params.province === 'CA') {
     prefix = "~";
-    numMetars = 1;
+    axios.get(`https://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=${prefix}${req.params.province}&hoursBeforeNow=${numMetars}&mostRecentForEachStation=true`)
+    .then(response => {
+      parseString(response.data, function (err, result) {
+        res.send(result)
+      });        
+    })
+  } else {
+    axios.get(`https://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=${prefix}${req.params.province}&hoursBeforeNow=${numMetars}`)
+    .then(response => {
+      parseString(response.data, function (err, result) {
+        res.send(result)
+      });        
+    })
   }
-
-  axios.get(`https://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=${prefix}${req.params.province}&hoursBeforeNow=${numMetars}`)
-  .then(response => {
-    parseString(response.data, function (err, result) {
-      res.send(result)
-    });        
-  })
 })
 
 app.get('/api/gettaffs', (req,res) => {

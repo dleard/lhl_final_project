@@ -196,6 +196,8 @@ export default class App extends Component {
   }
 
   render() {
+    let width = '50%'
+    if (window.screen.width < 901) { width = '90%' }
     return (
       <div>
         <button id="open-planner" className='btn btn-secondary' onClick={() => this.setState({ isPaneOpenLeft: true })}>Planner <FontAwesomeIcon icon="angle-double-right"></FontAwesomeIcon></button>
@@ -205,7 +207,7 @@ export default class App extends Component {
           isOpen={ this.state.isPaneOpenLeft }
           title={<Planner_Title refresh={this.refreshPlannerItems}/>}
           from='left'
-          width='50%'
+          width={ width }
           onRequestClose={ () => this.setState({ isPaneOpenLeft: false }) }>
           <div>
             <Planner 

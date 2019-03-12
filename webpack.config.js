@@ -44,9 +44,7 @@ module.exports = {
     }
   },
   plugins: [
-    new Dotenv({
-      path: path.resolve(__dirname, './.env')
-    }),
+    new Dotenv(),
     new webpack.DefinePlugin({
       'process.env.SUPERTEST': JSON.stringify('This is a test')
     }),

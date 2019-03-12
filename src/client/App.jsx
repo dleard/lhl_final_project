@@ -138,8 +138,6 @@ export default class App extends Component {
       this.setState({taffs: results[0].TAF})
     })
     .catch(error => console.log(error));
-
-
   }
 
   // Adds the base (airport) to the planner (sent as props to MapContainer component for use in the info window of a selected marker)
@@ -169,7 +167,7 @@ export default class App extends Component {
     }
     this.setState({bases: currentBases})
   }
-
+  // Remove an item from the Planner (sent as props to Planner.jsx and then down to Planner_Item.jsx)
   removePlannerItem = (base) => {
     const currentBases = this.state.bases;
     const filteredBases = currentBases.filter((curBase => curBase !== base));

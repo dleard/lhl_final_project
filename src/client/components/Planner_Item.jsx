@@ -100,7 +100,6 @@ export default class Planner_Item extends Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <div className="card">
         <div className="card-header">

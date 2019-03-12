@@ -100,6 +100,12 @@ export default class Planner_Item extends Component {
   }
 
   render() {
+    if (this.props.metars === undefined) {
+      return (
+        <div></div>
+      )
+    }
+    else {
     return (
       <div className="card">
         <div className="card-header">
@@ -163,6 +169,7 @@ export default class Planner_Item extends Component {
         <button className="btn btn-danger" onClick={() => this.props.removePlannerItem(this.props.metars[0].station_id[0])}>Remove</button>
       </div>
     );
+          }
   }
 }
 

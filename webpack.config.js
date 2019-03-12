@@ -51,7 +51,6 @@ module.exports(env) = {
       'process.env.SUPERTEST': JSON.stringify('This is a test')
       
     }),
-    new webpack.DefinePlugin({ 'process.env.API_URL': JSON.stringify(env.GOOGLE_API) }),
     new CleanWebpackPlugin([outputDirectory]),
     new HtmlWebpackPlugin({
       template: './public/index.html',

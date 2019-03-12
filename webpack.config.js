@@ -6,7 +6,7 @@ const Dotenv = require('dotenv-webpack');
 
 const outputDirectory = 'dist';
 
-module.exports() = {
+module.exports = {
   entry: ['babel-polyfill', './src/client/index.jsx'],
   output: {
     path: path.join(__dirname, outputDirectory),

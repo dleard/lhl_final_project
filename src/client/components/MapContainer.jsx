@@ -116,12 +116,12 @@ export class MapContainer extends Component {
     }
 
     for (let station in stations){
-      let icon = '/public/airport.png';
+      let icon = 'https://i.imgur.com/RsnVMJm.png';
       if (Number(stations[station].temp_c) < 1) {
-        icon = '/public/bluecold.png'
+        icon = 'https://i.imgur.com/JVkeN73.png'
       }
       if (Number(stations[station].visibility_statute_mi) < 0.5 || Number(stations[station].wind_speed_kt) > 40) {
-        icon = '/public/yellowalert.png'
+        icon = 'https://i.imgur.com/Z8HQU4I.png'
       }
       let entry = <Marker options={{icon: `${icon}`, label: `${stations[station].station_id}`}} onClick={this.onMarkerClick} key={uuidv4()} station={stations[station].station_id} position={{ lat: `${stations[station].latitude[0]}`, lng: `${stations[station].longitude[0]}` }} />
       markers.push(entry);

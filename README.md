@@ -7,6 +7,11 @@ TAFs and NOTAMS and displays this information in a convenient and easy to read i
 
 This app was created by Nick Doyle and Dylan Leard.
 
+## Heroku
+
+A demo version without the styled map is available on heroku.
+https://quiet-plateau-76741.herokuapp.com/
+
 ## Screenshots
 !["Screenshot of a Populated Map: "](https://github.com/dleard/lhl_final_project/blob/master/screenshots/BCMap.png)
 !["Screenshot of Trip Planner Pane: "](https://github.com/dleard/lhl_final_project/blob/master/screenshots/Planner.png)
